@@ -1,0 +1,310 @@
+{
+  "version": 1,
+  "categories": {
+    "act": {
+      "label": "ACT",
+      "description": "Software for investigation."
+    },
+    "learn": {
+      "label": "LEARN",
+      "description": "Software for learning."
+    }
+  },
+  "projects": [
+    {
+      "id": "surge",
+      "category": "act",
+      "name": "SURGE",
+      "version": "v0.4.4",
+      "kind": "Anti-cheat research and investigation workflow",
+      "outcome": "Turn captured gameplay into replay-backed investigation reports.",
+      "info": "surge.html#info",
+      "source": "https://github.com/seaboose/Surge",
+      "release": "https://github.com/seaboose/Surge/releases/tag/v0.4.4",
+      "verifiedCommit": "be5dce0fd9774149e93a16c74bb704bd728918eb",
+      "verifiedOn": "2026-11-02",
+      "documentation": "https://github.com/seaboose/Surge/blob/be5dce0fd9774149e93a16c74bb704bd728918eb/docs/survive-workflow.md",
+      "steps": [
+        {
+          "label": "Play",
+          "heading": [
+            "SURGE STARTS",
+            "WITH PLAY."
+          ],
+          "copy": "Survive, the game inside Surge, uses skillshot-dodging trials to compare human, scripted, and mixed movement.",
+          "facts": [
+            "Choose a 60-second trial and seed.",
+            "Move, dash and blink through the arena."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "surge",
+            "scene": "play",
+            "caption": "Workflow demonstration",
+            "cue": "01 / SURVIVE · CONTROLLED ARENA",
+            "screenshot": "assets/project-surge-play.png",
+            "alt": "Surge's Play and record setup with Human, Scripted, Mixed and controlled-speed trial conditions"
+          }
+        },
+        {
+          "label": "Record",
+          "heading": [
+            "SURGE RECORDS",
+            "THE SESSION."
+          ],
+          "copy": "Surge captures game-accepted commands and movement samples as the round runs.",
+          "facts": [
+            "Keep sequence, time and position together.",
+            "Inspect live while recording continues."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "surge",
+            "scene": "capture",
+            "caption": "Workflow demonstration · controlled fixture",
+            "cue": "02 / COMMANDS + POSITION RECORDS",
+            "screenshot": "assets/project-surge-record.png",
+            "alt": "Surge's Recording view with game time and recording diagnostics"
+          }
+        },
+        {
+          "label": "Review",
+          "heading": [
+            "SURGE REPLAYS",
+            "THE FINDING."
+          ],
+          "copy": "Select a flagged movement interval in Surge to inspect its replay and exact source record.",
+          "facts": [
+            "Compare Observed with Allowed.",
+            "Keep the selected record and game time aligned."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "surge",
+            "scene": "inspect",
+            "caption": "Workflow demonstration · controlled fixture",
+            "cue": "03 / REVIEW · SELECTED EVIDENCE",
+            "screenshot": "assets/project-surge-review.png",
+            "alt": "Surge's selected evidence panel showing walking displacement, observed and allowed movement, and raw record"
+          }
+        },
+        {
+          "label": "Explain",
+          "heading": [
+            "SURGE CONNECTS",
+            "THE EVIDENCE."
+          ],
+          "copy": "In Surge’s investigation editor, write observations and attach the selected moment as evidence.",
+          "facts": [
+            "Pin the interval as E1.",
+            "Keep analyst notes and recorded facts connected."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "surge",
+            "scene": "explain",
+            "caption": "Workflow demonstration · example narrative",
+            "cue": "04 / OBSERVATIONS + E1 CITATION",
+            "screenshot": "assets/project-surge-explain.png",
+            "alt": "Surge's investigation editor with analyst narrative and attached source evidence"
+          }
+        },
+        {
+          "label": "Export",
+          "heading": [
+            "SURGE BUILDS",
+            "THE REPORT."
+          ],
+          "copy": "Save a revision in Surge, then export your investigation as a self-contained HTML report.",
+          "facts": [
+            "Review saved text and citations.",
+            "Carry evidence snapshots into the report."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "surge",
+            "scene": "export",
+            "caption": "Workflow demonstration · example report",
+            "cue": "05 / SAVED REVISION → HTML REPORT",
+            "screenshot": "assets/project-surge-export.png",
+            "alt": "Surge's report export interface showing report readiness and investigation export"
+          }
+        }
+      ],
+      "context": "Investigation software I’m building."
+    },
+    {
+      "id": "studystep",
+      "category": "learn",
+      "name": "STUDYSTEP",
+      "version": "v0.3.2",
+      "kind": "Personal learning workspace",
+      "outcome": "Turn topics and source material into reviewed study sets, then build a routine with practice and focus.",
+      "info": "studystep.html#info",
+      "source": "https://github.com/seaboose/StudyStep",
+      "verified": {
+        "date": "2026-11-02",
+        "edition": "Regular desktop product",
+        "version": "0.3.2",
+        "packageBundle": "index-Bq9uu-Hj.js",
+        "packageBundleSha256": "86e00bb99f0b15b892214fe0bbcfee198ee084c2267986547d5b471f92ada19f",
+        "uiPaths": [
+          "local/TopicSearch.tsx",
+          "local/SectionPicker.tsx",
+          "local/CardReview.tsx",
+          "local/Flashcards.tsx",
+          "local/LocalApp.tsx",
+          "local/tools.tsx",
+          "scripts/local-generation.mjs",
+          "examples/studystep-example.json"
+        ]
+      },
+      "steps": [
+        {
+          "label": "Find",
+          "heading": [
+            "START A SET",
+            "IN STUDYSTEP."
+          ],
+          "copy": "StudyStep starts with what you want to learn. Search a topic or bring your own material.",
+          "facts": [
+            "Preview an English Wikipedia overview.",
+            "Or import PDF, DOCX, TXT or Markdown."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "find",
+            "caption": "Workflow demonstration · regular desktop v0.3.2",
+            "cue": "01 / YOUR INTERESTS → SOURCE MATERIAL",
+            "screenshot": "assets/project-studystep-workspace.png",
+            "screenshotAlt": "StudyStep 0.3.2 regular desktop: What would you like to learn? with file upload and topic search choices"
+          }
+        },
+        {
+          "label": "Select",
+          "heading": [
+            "STUDYSTEP KEEPS",
+            "THE SOURCE CLOSE."
+          ],
+          "copy": "Inspect the material and choose the passages that will inform your study set.",
+          "facts": [
+            "Read the original overview or your notes.",
+            "Select sections before generation."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "select",
+            "caption": "Workflow demonstration · regular desktop v0.3.2",
+            "cue": "02 / READ THE SOURCE → CHOOSE SECTIONS"
+          }
+        },
+        {
+          "label": "Draft",
+          "heading": [
+            "STUDYSTEP BUILDS",
+            "A STUDY DRAFT."
+          ],
+          "copy": "Optional local AI turns selected excerpts into a guide, flashcards, and practice questions.",
+          "facts": [
+            "Use a downloaded Ollama model.",
+            "Keep the draft open for review."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "draft",
+            "caption": "Workflow demonstration · regular desktop v0.3.2",
+            "cue": "03 / SELECTED EXCERPTS → LOCAL AI DRAFT"
+          }
+        },
+        {
+          "label": "Check",
+          "heading": [
+            "STUDYSTEP CHECKS",
+            "THE EVIDENCE."
+          ],
+          "copy": "Quotation and structure checks precede a separate model review of the generated material.",
+          "facts": [
+            "Connect answers to cited passages.",
+            "Revise once when checks need repairs."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "check",
+            "caption": "Workflow demonstration · regular desktop v0.3.2",
+            "cue": "04 / SOURCE CHECKS → MODEL REVIEW"
+          }
+        },
+        {
+          "label": "Review",
+          "heading": [
+            "YOU REVIEW.",
+            "STUDYSTEP SAVES."
+          ],
+          "copy": "Compare each card with its source, edit when needed, and approve the cards you want to keep.",
+          "facts": [
+            "Keep & next reviews each card.",
+            "Save study set after approval."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "review",
+            "caption": "Workflow demonstration · regular desktop v0.3.2",
+            "cue": "05 / REVIEW CARDS → KEEP → SAVE"
+          }
+        },
+        {
+          "label": "Practice",
+          "heading": [
+            "PRACTICE WITH",
+            "STUDYSTEP."
+          ],
+          "copy": "Use flashcards, multiple-choice questions, and recall practice to revisit the material.",
+          "facts": [
+            "Try an answer before revealing it.",
+            "Rate recall to schedule another review."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "practice",
+            "caption": "Workflow demonstration · regular desktop v0.3.2",
+            "cue": "06 / TRY → REVEAL → SCHEDULE REVIEW",
+            "screenshot": "assets/project-studystep-cards.png",
+            "screenshotAlt": "StudyStep 0.3.2 regular desktop flashcards, showing the reference answer and recall rating controls"
+          }
+        },
+        {
+          "label": "Return",
+          "heading": [
+            "MAKE LEARNING",
+            "A ROUTINE."
+          ],
+          "copy": "Your set and progress stay on your computer. A focus timer, collection, and journal help you return.",
+          "facts": [
+            "Back up or export your study set.",
+            "Collect a design for time spent studying."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "keep",
+            "caption": "Workflow demonstration · regular desktop v0.3.2",
+            "cue": "07 / SAVED WORK → FOCUS → RETURN",
+            "screenshot": "assets/project-studystep-collection.png",
+            "screenshotAlt": "StudyStep 0.3.2 Focus collection with Spark, Orbit, and Constellation designs"
+          }
+        }
+      ],
+      "verifiedOn": "2026-11-02",
+      "documentation": "https://github.com/seaboose/StudyStep/blob/12fb21d4160c62552e6fe4a33594ef32c350802e/docs/release-0.3.2.md",
+      "context": "Personal learning software I’m building.",
+      "verifiedCommit": "12fb21d4160c62552e6fe4a33594ef32c350802e",
+      "release": "https://github.com/seaboose/StudyStep/releases/tag/v0.3.2"
+    }
+  ]
+}

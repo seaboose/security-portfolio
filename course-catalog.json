@@ -1,0 +1,29 @@
+{
+  "program":"M.S. Information Security",
+  "institution":"Cal Poly Pomona",
+  "cohort":"Fall 2026 · Online",
+  "expectedGraduation":"May 2028",
+  "updated":"2026-11-02",
+  "source":"https://www.cpp.edu/cba/sgsb/curriculum/msis-online-curriculum.shtml",
+  "standingSource":"Confirmed by Sebastian on November 2, 2026",
+  "terms":[
+    {"id":"fall-2026","label":"Fall 2026","year":"YEAR 1","courses":[
+      {"code":"GBA 5100","title":"Fundamentals of IT Auditing","units":3,"status":"in-progress"},
+      {"code":"GBA 6270","title":"Managing Software Defined Networks","units":3,"status":"in-progress"}
+    ]},
+    {"id":"spring-2027","label":"Spring 2027","year":"YEAR 1","courses":[
+      {"code":"GBA 5200","title":"IT Administration","units":3,"status":"planned"},
+      {"code":"GBA 6750","title":"Web Application Security","units":3,"status":"planned"},
+      {"code":"GBA 6760","title":"Managing the Cloud Infrastructure","units":3,"status":"planned"}
+    ]},
+    {"id":"fall-2027","label":"Fall 2027","year":"YEAR 2","courses":[
+      {"code":"GBA 6740","title":"Privacy and Security Risk Management","units":3,"status":"planned"},
+      {"code":"GBA 6790","title":"Network Security","units":3,"status":"planned"},
+      {"code":"GBA 6810","title":"Digital Forensics","units":3,"status":"planned"}
+    ]},
+    {"id":"spring-2028","label":"Spring 2028","year":"YEAR 2","courses":[
+      {"code":"GBA 6780","title":"Information Systems Security","units":3,"status":"planned"},
+      {"code":"GBA 6950","title":"Comprehensive Project","units":3,"status":"planned"}
+    ]}
+  ]
+}

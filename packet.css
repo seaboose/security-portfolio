@@ -1,0 +1,6 @@
+.packet-tag{position:absolute;z-index:6;display:none;gap:5px;padding:10px 13px;border:1px solid #5acbc583;border-left:2px solid #6de7df;background:#081724ed;box-shadow:0 7px 24px #02071250;pointer-events:none;font-family:var(--mono);white-space:nowrap}
+.packet-tag>span{font-size:7px;line-height:1.1;letter-spacing:.08em;color:#a2bfca}.packet-tag>strong{font-size:10px;line-height:1.2;font-weight:500;letter-spacing:.04em;color:#a2f6ef}
+.packet-tag:after{content:'';position:absolute;bottom:-9px;width:14px;height:1px;background:#6de7dfb0;transform:rotate(-40deg);transform-origin:left center}.packet-tag[data-side=right]:after{left:-9px}.packet-tag[data-side=left]:after{right:-9px;transform:rotate(40deg);transform-origin:right center}
+.packet-tag[data-phase=map]{gap:4px;padding:7px 9px;border-color:#ff5d6788;border-left-color:#ff5960;background:#200d1bef}.packet-tag[data-phase=map]>span{font-size:6px;color:#c2a6b1}.packet-tag[data-phase=map]>strong{font-size:8px;color:#ff9a9a}.packet-tag[data-phase=map]:after{background:#ff666bb0}
+@media(max-width:600px){.packet-tag{padding:8px 10px}.packet-tag>span{font-size:6px}.packet-tag>strong{font-size:8px}.packet-tag[data-phase=map]>strong{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.packet-tag{display:none!important}}

@@ -1,0 +1,33 @@
+World land geometry: Natural Earth, 1:110 million physical land.
+
+Source:
+https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_land.geojson
+Downloaded from:
+https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson
+Retrieved: November 2, 2026.
+
+Natural Earth raster and vector map data are in the public domain.
+Terms: https://www.naturalearthdata.com/about/terms-of-use/
+Made with Natural Earth.
+
+Local modifications: feature properties removed; coordinates rounded to four
+decimal places. A regular 2-degree grid of land-contained points was derived
+from the polygon geometry for a dotted map display. Dots cover latitude -59
+through 83 degrees and longitude -179 through 179 degrees; Antarctica is
+therefore omitted from this optional dot display. All original land polygon
+geometry, including Antarctica, remains in features.
+
+world-land.json schema:
+{
+  "type": "FeatureCollection",
+  "features": [{"type":"Feature", "properties":{}, "geometry":{
+    "type":"Polygon" or "MultiPolygon", "coordinates":GeoJSON coordinates
+  }}],
+  "dots": [[longitude, latitude], ...],
+  "dotSpacingDegrees": 2,
+  "dotLatitudeRange": [-59,83]
+}
+Coordinates are decimal degrees in GeoJSON longitude/latitude order.
+
+This asset contains geographic shapes only. Animated attack arcs and endpoint
+activity in the portfolio are illustrative, not a real-time threat feed.
