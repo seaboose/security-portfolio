@@ -1,0 +1,2 @@
+# Evidence receipts identify exact exported bytes.
+investigation/evidence/** -text

@@ -1,0 +1,148 @@
+{
+  "schema": "surge-portfolio-demonstration-verification-v1",
+  "verified_utc": "2026-11-04T18:30:18.246354+00:00",
+  "scope": "Read-only byte and evidence checks of isolated fresh demonstration; no application code edits or additional UI operations.",
+  "package": {
+    "filename": "Surge-0.4.4-Windows-x64.zip",
+    "sha256": "d4cdde7771032de41191feba66448e01b7adf125ff2e1d24455d2058316636e0"
+  },
+  "application": {
+    "archive_files_checked": 1248,
+    "mismatches": [],
+    "extra_files": [],
+    "all_release_member_bytes_unchanged": true,
+    "profile_excluded": true
+  },
+  "trials": [
+    {
+      "trial_id": "1a21adbe8edf44e5ac65a0b99d8a8fd0",
+      "mode": "scripted",
+      "seed": 1337,
+      "phase": "practice",
+      "profile_id": "survive-lucian-practice-v1",
+      "profile_sha256": "52b6844a3881b64d0bdcbce021becaf8f25733ebb0d71d94f37e15b6e61a46de",
+      "execution_context": "rendered_desktop",
+      "physical_input_verified": false,
+      "recording_id": "2c2d71231dfd45058adaa670435db76f",
+      "state": "complete",
+      "completion": "completed",
+      "rows": 2091,
+      "game_seconds": 60,
+      "counts": {
+        "No finding": 1807,
+        "Review": 0,
+        "Unknown": 53
+      },
+      "source_sha256": "28adf2cab7783d0e29b8bc09991e057d60543e83efdbcf3ddc13895d4e266963",
+      "recording_file_hashes_verified": true,
+      "recording_files_checked": 7,
+      "health": {
+        "error": null,
+        "parse_errors": 0,
+        "pending_bytes": 0,
+        "sequence_gaps": 0,
+        "stale_s": 0.3117466000003333
+      }
+    },
+    {
+      "trial_id": "ebcae49cd3c2448f9a4f83ba42ad310e",
+      "mode": "speed_probe",
+      "seed": 1337,
+      "phase": "practice",
+      "profile_id": "survive-lucian-practice-v1",
+      "profile_sha256": "52b6844a3881b64d0bdcbce021becaf8f25733ebb0d71d94f37e15b6e61a46de",
+      "execution_context": "rendered_desktop",
+      "physical_input_verified": false,
+      "recording_id": "73b78e40634a4012962ac1841cabcac0",
+      "state": "complete",
+      "completion": "completed",
+      "rows": 2078,
+      "game_seconds": 60,
+      "counts": {
+        "No finding": 1707,
+        "Review": 94,
+        "Unknown": 44
+      },
+      "source_sha256": "f6f997e8fc314d29b64e92271072a1525221f35b87f97ad02a18de9242f437da",
+      "recording_file_hashes_verified": true,
+      "recording_files_checked": 7,
+      "health": {
+        "error": null,
+        "parse_errors": 0,
+        "pending_bytes": 0,
+        "sequence_gaps": 0,
+        "stale_s": 0.3391057999997429
+      }
+    }
+  ],
+  "report": {
+    "filename": "demonstration-report.html",
+    "sha256": "158b86bf7029903562aefe89143b31ceb433fdc71d767ffa00eb4ed9913d967b",
+    "revision": 3,
+    "status": "draft",
+    "author_label": "portfolio-demo",
+    "verification": {
+      "checked_utc": "2026-11-04T18:27:03.929868+00:00",
+      "state": "verified",
+      "items": [
+        {
+          "evidence_id": "E1",
+          "state": "verified",
+          "message": "Pinned recording, analysis and selected evidence match current verified bytes."
+        }
+      ],
+      "counts": {
+        "verified": 1,
+        "missing": 0,
+        "changed": 0,
+        "unavailable": 0
+      },
+      "review_valid": false
+    },
+    "selected_constraint": {
+      "allowed": 16.166855692863464,
+      "constraint": "walking_displacement",
+      "constraint_ratio": 1.2371234770991606,
+      "coverage": "eligible",
+      "elapsed_s": 20.006003603339195,
+      "end_seq": 692,
+      "event_id": "692:walking_displacement",
+      "observed": 20.000396728515607,
+      "policy_sha256": "52b6844a3881b64d0bdcbce021becaf8f25733ebb0d71d94f37e15b6e61a46de",
+      "profile_id": "survive-lucian-practice-v1",
+      "run_completion": "completed",
+      "session_id": "A94255E843D785A7BE1C62A98FAF49E5",
+      "start_seq": 689,
+      "status": "Review",
+      "unit": "cm"
+    },
+    "evidence_keys": [
+      "added_by",
+      "added_utc",
+      "capture",
+      "constraint",
+      "constraint_id",
+      "evidence_id",
+      "fingerprints",
+      "interval_start_record",
+      "raw_record",
+      "recording_id",
+      "seq",
+      "session_id",
+      "time_s"
+    ],
+    "computed_observed_cm": 20.000396728515607,
+    "computed_allowed_cm": 16.166855692863464,
+    "measurement_recomputed_matches": true,
+    "source_hash_matches": true,
+    "raw_snapshot_equals_source": true,
+    "interval_start_snapshot_equals_source": true,
+    "constraint_snapshot_equals_analysis": true
+  },
+  "limits": [
+    "DRAFT export: operator-authored demonstration narrative, not a reviewed analyst verdict.",
+    "Two controlled practice sessions are not a human baseline, performance study or detector accuracy estimate.",
+    "Unsigned hashes establish retained byte consistency, not source authenticity.",
+    "No new clean-machine qualification: this is the current development host."
+  ]
+}

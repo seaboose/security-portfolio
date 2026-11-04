@@ -1,4 +1,4 @@
-import {createTraceAudio} from './trace-audio.js?v=019b20dc38f2';
+import {createTraceAudio} from './trace-audio.js?v=49dbad3d0926';
 
 // One clock drives camera, labels and sound together. Wheel notches ease into
 // position without changing native document scrolling or overshooting a scene.
@@ -21,6 +21,14 @@ export function smoothTraceProgress(current,target,elapsedMs,{snap=false,respons
   let resumeRequested=performance.getEntriesByType('navigation')[0]?.type==='back_forward'&&history.state?.traceResume?clamp(history.state.traceResume.progress??1):null;
   const sound=createTraceAudio($('#sound-toggle'),$('#sound-status')),replay=$('#replay-trace');
   $('.trace-controls').hidden=false;
+  const traceChapters=[
+    {until:.18,label:'INTENT',detail:'A PROMPT BECOMES AN ACTION'},
+    {until:.43,label:'THE CONNECTION',detail:'WORKSTATION → ROUTER'},
+    {until:.69,label:'ACROSS THE NETWORK',detail:'FOLLOW EVENT E01'},
+    {until:.93,label:'THE RESPONSE',detail:'ALERT → ANALYST WORKSTATION'},
+    {until:Infinity,label:'THE WORK',detail:'ACT / LEARN'}
+  ];
+  $('#scene-total').textContent=String(traceChapters.length).padStart(2,'0');
   const storyTitle=$('.opening-copy h1');storyTitle.tabIndex=-1;
   const consoleCue=$('.console-arrival');
   // Extra sticky distance makes the project launcher a destination, while keeping native scrolling.
@@ -47,8 +55,8 @@ export function smoothTraceProgress(current,target,elapsedMs,{snap=false,respons
     const fallback=document.body.classList.contains('static-render'),arrival=fallback?ease(.96,.997,p):0;visible(defender,arrival,fallback);
     monitor.style.transform='translate(-50%,-50%)';monitor.style.willChange='auto';monitor.style.setProperty('--arrive',1);
     $('.story-meta').style.opacity=1-ease(.92,.98,p);$('.story-skip').style.opacity=1-ease(.92,.98,p);$('.story-skip').inert=p>.98;
-    const chapters=p<.18?['01 / INTENT','A PROMPT BECOMES AN ACTION']:p<.43?['02 / THE CONNECTION','WORKSTATION → ROUTER']:p<.69?['03 / ACROSS THE NETWORK','FOLLOW EVENT E01']:p<.93?['04 / THE RESPONSE','ALERT → ANALYST WORKSTATION']:['05 / THE WORK','ACT / LEARN'];
-    $('#journey-chapter').textContent=chapters[0];$('#journey-detail').textContent=chapters[1];$('#scene-number').textContent=chapters[0].slice(0,2);
+    const chapterIndex=traceChapters.findIndex(chapter=>p<chapter.until),chapter=traceChapters[chapterIndex],chapterNumber=String(chapterIndex+1).padStart(2,'0');
+    $('#journey-chapter').textContent=`${chapterNumber} / ${chapter.label}`;$('#journey-detail').textContent=chapter.detail;$('#scene-number').textContent=chapterNumber;
     $('.journey-label').style.opacity=1-ease(.93,.98,p);visible($('.map-caption'),ease(.41,.45,p)*(1-ease(.66,.70,p)));
     if(scene)scene.setProgress(p,{immediate:shouldSnap});
     // The CSS workstation remains available as a low-motion/static fallback.
@@ -77,8 +85,8 @@ export function smoothTraceProgress(current,target,elapsedMs,{snap=false,respons
   buttons.forEach((b,i)=>b.addEventListener('click',()=>{buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#learn-state').textContent=boundaries[i][0];$('#learn-result').textContent=boundaries[i][1];}));
   function loadScene(){
     if(staticView||reduced.matches||scene||loadingScene)return;loadingScene=true;document.documentElement.classList.add('scene-loading');document.body.classList.remove('static-render');
-    import('./hardware-scene.js?v=019b20dc38f2').then(m=>m.createHardwareScene(stage,{initialProgress:lastProgress})).then(s=>{scene=s;snapProgress=true;paint();document.documentElement.classList.remove('scene-loading','scene-restoring');$('.scene-resume').style.backgroundImage='';document.querySelector('.hardware-canvas')?.addEventListener('webglcontextrestored',()=>{scene.resize();paint();});}).catch(error=>{console.warn('Portfolio 3D scene unavailable; using the accessible static view.',error?.message||error);document.querySelector('.hardware-canvas')?.remove();document.querySelector('.physical-enter')?.remove();document.querySelector('.packet-tag')?.remove();document.querySelector('.server-alert')?.remove();$('.terminal-launchpad').style.display='none';$('.terminal-launchpad').inert=true;$('.scene-resume').style.backgroundImage='';document.body.classList.remove('webgl-ready');document.body.classList.add('static-render');document.documentElement.classList.remove('scene-loading','scene-restoring');if(['#learn','#act','#console'].includes(location.hash))goConsole(true);schedule();}).finally(()=>{loadingScene=false;});
+    import('./hardware-scene.js?v=49dbad3d0926').then(m=>m.createHardwareScene(stage,{initialProgress:lastProgress})).then(s=>{scene=s;snapProgress=true;paint();document.documentElement.classList.remove('scene-loading','scene-restoring');$('.scene-resume').style.backgroundImage='';document.querySelector('.hardware-canvas')?.addEventListener('webglcontextrestored',()=>{scene.resize();paint();});}).catch(error=>{console.warn('Portfolio 3D scene unavailable; using the accessible static view.',error?.message||error);document.querySelector('.hardware-canvas')?.remove();document.querySelector('.physical-enter')?.remove();document.querySelector('.packet-tag')?.remove();document.querySelector('.server-alert')?.remove();$('.terminal-launchpad').style.display='none';$('.terminal-launchpad').inert=true;$('.scene-resume').style.backgroundImage='';document.body.classList.remove('webgl-ready');document.body.classList.add('static-render');document.documentElement.classList.remove('scene-loading','scene-restoring');if(['#learn','#act','#console'].includes(location.hash))goConsole(true);schedule();}).finally(()=>{loadingScene=false;});
   }
   route();paint();document.fonts.ready.then(resize);loadScene();
-  fetch('./project-catalog.json?v=019b20dc38f2').then(r=>r.ok?r.json():null).then(catalog=>{if(Array.isArray(catalog?.projects))$('[data-project-total]').textContent=String(catalog.projects.filter(p=>['act','learn'].includes(p.category)).length).padStart(2,'0');}).catch(()=>{});
+  fetch('./project-catalog.json?v=49dbad3d0926').then(r=>r.ok?r.json():null).then(catalog=>{if(Array.isArray(catalog?.projects))$('[data-project-total]').textContent=String(catalog.projects.filter(p=>['act','learn'].includes(p.category)).length).padStart(2,'0');}).catch(()=>{});
 })();

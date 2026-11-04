@@ -1,0 +1,36 @@
+SURGE / INVESTIGATION WALKTHROUGH
+
+00:00 — Start
+Open a recorded trial.
+Survive is a movement game used to test Surge’s investigation workflow.
+Controlled speed trial
+60 seconds · seed 1337
+
+00:12 — Replay
+See what happened.
+Replay recorded movement and events on a shared timeline.
+2,078 source records
+
+00:37 — Inspect
+Follow the flag.
+Select a finding to see the replay, measurement, and source records together.
+Observed: 20.000 cm
+Allowed: 16.167 cm
+Records 689–692 · 20.006 seconds
+
+00:50 — Explain
+Support the conclusion.
+Link observations to evidence E1 and document the finding’s limits.
+Evidence-linked investigation
+
+01:20 — Export
+Make the work reviewable.
+Check the evidence and export a report with its source snapshots.
+Portable HTML report
+Draft · awaiting review
+
+01:40 — Compare
+Check the control.
+Compare the speed violation with legal scripted movement.
+Review findings: 94 speed / 0 legal
+Unknown observations: 44 speed / 53 legal

@@ -5,7 +5,7 @@ let surgeFrames = [
   ['Explain the evidence', 'Link selected observations to an investigation and its report revisions.', 'explain'],
   ['Export the report', 'Export a reviewable investigation with evidence references and consistency checks.', 'export']
 ];
-fetch('./project-catalog.json?v=019b20dc38f2').then(r=>r.ok?r.json():null).then(catalog=>{const project=catalog?.projects?.find(item=>item.id==='surge');if(project)surgeFrames=project.steps.map(step=>[step.heading.join(' '),step.copy,step.visual.screenshot]);}).catch(()=>{});
+fetch('./project-catalog.json?v=49dbad3d0926').then(r=>r.ok?r.json():null).then(catalog=>{const project=catalog?.projects?.find(item=>item.id==='surge');if(project)surgeFrames=project.steps.map(step=>[step.heading.join(' '),step.copy,step.visual.screenshot]);}).catch(()=>{});
 const studyFrames = [
   ['Draft from selected material', 'Selected excerpts inform a draft that stays separate from saved material.', 'DRAFT / REVIEW PENDING', 'Selected source text informs a local-model draft.'],
   ['Check sources and structure', 'Compare quotations and answer structure with the source material.', 'SOURCE CHECK / INSPECT EVIDENCE', 'Compare the draft with its source passage.'],

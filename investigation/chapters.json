@@ -1,0 +1,73 @@
+{
+  "version": 2,
+  "video": "media/surge-demo-short.mp4",
+  "captions": "captions.vtt",
+  "poster": "media/surge-demo-poster.jpg",
+  "chapters": [
+    {
+      "id": "context",
+      "start": 0,
+      "label": "Start",
+      "title": "Open a recorded trial.",
+      "copy": "Survive is a movement game used to test Surge\u2019s investigation workflow.",
+      "facts": [
+        "Saved practice recordings",
+        "60-second trials \u00b7 seed 1337"
+      ]
+    },
+    {
+      "id": "replay",
+      "start": 12,
+      "label": "Replay",
+      "title": "See what happened.",
+      "copy": "Replay recorded movement and events on a shared timeline.",
+      "facts": [
+        "2,078 source records"
+      ]
+    },
+    {
+      "id": "inspect",
+      "start": 37,
+      "label": "Inspect",
+      "title": "Follow the flag.",
+      "copy": "Select a finding to see the replay, measurement, and source records together.",
+      "facts": [
+        "Observed: 20.000 cm",
+        "Allowed: 16.167 cm",
+        "Records 689\u2013692 \u00b7 20.006 seconds"
+      ]
+    },
+    {
+      "id": "explain",
+      "start": 50,
+      "label": "Explain",
+      "title": "Support the conclusion.",
+      "copy": "Link observations to evidence E1 and document the finding\u2019s limits.",
+      "facts": [
+        "Evidence-linked investigation"
+      ]
+    },
+    {
+      "id": "export",
+      "start": 80,
+      "label": "Export",
+      "title": "Make the work reviewable.",
+      "copy": "Check the evidence and export a report with its source snapshots.",
+      "facts": [
+        "Portable HTML report",
+        "Draft \u00b7 awaiting review"
+      ]
+    },
+    {
+      "id": "compare",
+      "start": 100,
+      "label": "Compare",
+      "title": "Check the control.",
+      "copy": "Compare the speed violation with legal scripted movement.",
+      "facts": [
+        "Review findings: 94 speed / 0 legal",
+        "Unknown observations: 44 speed / 53 legal"
+      ]
+    }
+  ]
+}

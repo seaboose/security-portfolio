@@ -1,0 +1,12 @@
+{
+  "result": "identical report payload after excluding export and verification timestamps",
+  "originalSha256": "158b86bf7029903562aefe89143b31ceb433fdc71d767ffa00eb4ed9913d967b",
+  "reexportSha256": "75468b82e022ff3638d8637949a329366efbdcd313c60dfec73cea5aea52ff73",
+  "timestamps": {
+    "oldExport": "2026-11-04T18:27:03.934320+00:00",
+    "newExport": "2026-11-04T18:54:47.602185+00:00",
+    "oldVerification": "2026-11-04T18:27:03.929868+00:00",
+    "newVerification": "2026-11-04T18:54:47.597647+00:00"
+  },
+  "status": "Draft revision 3; existing evidence and narrative unchanged"
+}
