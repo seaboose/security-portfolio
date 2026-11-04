@@ -1,17 +1,22 @@
 <!doctype html>
 <html lang="en-US">
-<head>
+<head><meta name="portfolio-release" content="019b20dc38f2">
+
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('scene-loading');</script>
+  <script>
+  if(location.pathname.endsWith('/index.html'))history.replaceState(history.state,'',location.pathname.slice(0,-10)+location.search+location.hash);
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&new URLSearchParams(location.search).get('view')!=='static')document.documentElement.classList.add('scene-loading');
+  </script>
+  <link rel="canonical" href="https://seaboose.me/">
   <meta name="theme-color" content="#101412">
   <meta name="description" content="Sebastian “seaboose” Marquez — Information Security student exploring detection, evidence-led security workflows, and responsible local AI through Surge and StudyStep.">
   <title>Sebastian “seaboose” Marquez | Information Security</title>
-  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/mark.svg?v=019b20dc38f2" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="main.css"><link rel="stylesheet" href="journey.css"><link rel="stylesheet" href="packet.css"><script src="main.js" type="module"></script>
-<link rel="stylesheet" href="security-background.css"><link rel="stylesheet" href="profile.css"><script type="module" src="profile.js"></script>
-<link rel="stylesheet" href="industrial.css"></head>
+  <link rel="stylesheet" href="main.css?v=019b20dc38f2"><link rel="stylesheet" href="journey.css?v=019b20dc38f2"><link rel="stylesheet" href="packet.css?v=019b20dc38f2"><script src="main.js?v=019b20dc38f2" type="module"></script>
+<link rel="stylesheet" href="security-background.css?v=019b20dc38f2"><link rel="stylesheet" href="profile.css?v=019b20dc38f2"><script type="module" src="profile.js?v=019b20dc38f2"></script>
+<link rel="stylesheet" href="industrial.css?v=019b20dc38f2"></head>
 <body class="security-environment">
 <a class="skip-link" href="#console">Skip to projects</a>
 <header class="site-header">
@@ -21,6 +26,14 @@
 <main>
   <section class="story" id="story" aria-label="Illustrated story: AI-assisted misuse, observable activity, and defensive investigation">
     <div class="story-stage">
+      <section class="static-story" id="static-projects" aria-label="Explore the portfolio">
+        <span class="eyebrow">SECURITY / EVIDENCE / HUMAN JUDGMENT</span>
+        <h2>Understand the activity.<br><em>Make the next decision.</em></h2>
+        <p>Tools for investigation and source-linked learning, built by Sebastian “seaboose” Marquez.</p>
+        <div class="static-journey" aria-label="Illustrated security workflow"><span>01 / OBSERVE</span><i aria-hidden="true">→</i><span>02 / INVESTIGATE</span><i aria-hidden="true">→</i><span>03 / RESPOND</span></div>
+        <div class="static-projects"><a href="act.html"><small>ACT / SURGE</small><strong>Investigate with evidence.</strong><span>Explore security software ↗</span></a><a href="learn.html"><small>LEARN / STUDYSTEP</small><strong>Learn with source context.</strong><span>Explore learning software ↗</span></a></div>
+        <div class="static-links"><a href="#about">MEET THE PERSON BEHIND THE WORK ↓</a><a href="./#story">PLAY THE STORY ↗</a></div>
+      </section>
       <div class="scene-resume" aria-hidden="true"></div>
       <div class="trace-controls" role="group" aria-label="Trace controls" hidden>
         <button type="button" id="replay-trace" hidden><b aria-hidden="true">↺</b> REPLAY TRACE</button>
@@ -65,7 +78,7 @@
         </div>
         <div class="project-panel" id="act-panel" aria-label="Surge preview">
           <div class="project-summary"><div><span class="eyebrow">SECURITY WORKFLOW APPLICATION / V0.4.4</span><h3>SURGE<span>↗</span></h3></div><p>Review telemetry, replay findings, and build evidence-linked reports.</p></div>
-          <a class="project-image" href="surge.html" aria-label="Explore Surge case study"><img src="assets/project-surge-review.png" alt="Actual Surge desktop interface showing an investigation and replay evidence" width="1440" height="900" loading="lazy"><span class="image-tag">RECORDED APPLICATION SCREENSHOT</span><span class="image-action">EXPLORE THE WORKFLOW ↗</span></a>
+          <a class="project-image" href="surge.html" aria-label="Explore Surge case study"><img src="assets/project-surge-review.png?v=019b20dc38f2" alt="Actual Surge desktop interface showing an investigation and replay evidence" width="1440" height="900" loading="lazy"><span class="image-tag">RECORDED APPLICATION SCREENSHOT</span><span class="image-action">EXPLORE THE WORKFLOW ↗</span></a>
           <div class="workflow-strip"><span>01 TELEMETRY</span><b>→</b><span>02 FINDINGS</span><b>→</b><span>03 REPLAY</span><b>→</b><span>04 REPORT</span></div>
           <div class="project-actions"><a class="button" href="surge.html">OPEN CASE STUDY <span>↗</span></a><a class="text-link info-link" href="surge.html#info">INFO ↗</a><a class="text-link" href="https://github.com/seaboose/Surge">GITHUB ↗</a><a class="text-link" href="https://github.com/seaboose/Surge/releases/download/v0.4.4/Surge-0.4.4-Windows-x64.zip">WINDOWS DOWNLOAD ↓</a></div>
           <p class="scope-note">APPLICATION / OWNED GAMEPLAY TELEMETRY</p>
@@ -94,7 +107,7 @@
       <div class="story-copy opening-copy"><div class="eyebrow"><span class="orange-dot"></span> A CHANGING THREAT LANDSCAPE</div><h1>THE INTENT IS HUMAN.<br>THE SCALE IS <em>ARTIFICIAL.</em></h1><div class="hero-bottom"><p>AI can amplify malicious intent.<br>Defense starts with understanding the evidence.</p><a class="text-link" href="#console">EXPLORE MY WORK <span>↗</span></a></div></div>
       <div class="story-copy trace-copy"><div class="eyebrow">03 / ACROSS THE NETWORK</div><h2>ONE CONNECTION.<br><em>GLOBAL REACH.</em></h2><p class="map-threat-fact">In 2025, the FBI received 22,364 AI-related complaints with more than $893 million in reported losses.</p><a class="map-fact-source" href="https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf#page=39" target="_blank" rel="noopener noreferrer">SOURCE: FBI IC3 / 2025 REPORT · P. 39 ↗</a><p class="map-defense-takeaway" style="font-size:11px;line-height:1.5;margin-top:10px;color:#ccd2c4">Defense needs people who question, investigate, and respond.</p></div>
       <div class="story-copy defense-copy"><div class="eyebrow">04 / THE DEFENSIVE WORKSTATION</div><h2>FROM SERVER<br><em>TO DEFENDER.</em></h2></div>
-      <div class="story-meta"><span class="scenario-label">INTERACTIVE PORTFOLIO / ILLUSTRATED NETWORK JOURNEY</span><span class="scroll-cue">SCROLL TO TRACE <span>↓</span></span></div>
+      <div class="story-meta"><span class="scenario-label">ILLUSTRATED NETWORK JOURNEY · <a href="?view=static#story">SIMPLE VIEW ↗</a></span><span class="scroll-cue">SCROLL TO TRACE <span>↓</span></span></div>
       <div class="story-rail" aria-hidden="true"><span id="scene-number">01</span><div><i></i></div><span>05</span></div>
       <a href="#console" class="story-skip">SKIP INTRO ↘</a>
     </div>
@@ -102,8 +115,68 @@
 <!-- SHARED PROFILE START -->
 <div class="shared-profile">
   <section class="profile-principle" aria-labelledby="principle-title"><span class="profile-eyebrow">THE PRINCIPLE / BEYOND THE INTERFACE</span><h2 id="principle-title">CONFIDENCE COMES<br>WITH <em>CONTEXT.</em></h2><div class="profile-principles"><article><span>01 / VISIBILITY</span><h3>Make it inspectable.</h3><p>Connect findings to their sources.</p></article><article><span>02 / BOUNDARIES</span><h3>State what is known.</h3><p>Make evidence and scope clear.</p></article><article><span>03 / JUDGMENT</span><h3>Keep people involved.</h3><p>Make review part of the workflow.</p></article></div></section>
-  <section class="profile-about" id="about" aria-labelledby="about-title"><div class="profile-intro"><span class="profile-eyebrow">THE PERSON / BEHIND THE WORK</span><h2 id="about-title"><span class="profile-name-line">SEBASTIAN</span><span class="profile-nickname">“seaboose”</span><em class="profile-name-line">MARQUEZ.</em></h2><p>Information Security master’s student building tools for clearer investigation and learning.</p><a href="assets/sebastian-marquez-resume.docx" class="profile-link">VIEW RESUME ↓ DOCX</a></div><div class="profile-detail"><div class="profile-tabs" role="tablist" aria-label="Profile and education"><button id="profile-tab" type="button" role="tab" aria-selected="true" aria-controls="profile-panel">PROFILE</button><button id="course-tab" type="button" role="tab" aria-selected="false" aria-controls="course-panel" tabindex="-1">COURSE OUTLINE</button></div><div id="profile-panel" class="profile-panel" role="tabpanel" aria-labelledby="profile-tab"><span class="profile-eyebrow">SECURITY / EVIDENCE / HUMAN JUDGMENT</span><h3>Curiosity into<br>working software.</h3><p>Exploring security engineering, detection, governance, auditing, and secure AI workflows.</p><div class="profile-education"><strong>M.S. INFORMATION SECURITY</strong><span>Cal Poly Pomona · Expected May 2028</span></div><div class="profile-education"><strong>COMPUTER INFORMATION SYSTEMS</strong><span>Bachelor of Business · Cyber Security minor · 2023</span></div><a href="#course-panel" class="profile-link" data-open-courses>EXPLORE MY COURSEWORK →</a></div><div id="course-panel" class="profile-panel" role="tabpanel" aria-labelledby="course-tab" hidden><div class="course-overview"><span class="profile-eyebrow">MSIS / FALL 2026 COHORT</span><p data-course-summary>2 in progress · 8 planned</p><span class="course-standing-date">STANDING UPDATED / NOV 2026</span></div><nav class="course-term-nav" aria-label="Course terms" data-course-nav></nav><div class="course-scroll" tabindex="0" aria-label="Scroll through the program course outline" data-course-list></div><div class="course-bottom"><span>SCROLL TO EXPLORE ↓</span><a href="https://www.cpp.edu/cba/sgsb/curriculum/msis-online-curriculum.shtml">OFFICIAL CURRICULUM ↗</a></div></div></div></section>
-  <section class="profile-contact"><span class="profile-eyebrow">NEXT / START A CONVERSATION</span><h2>LET’S BUILD WITH<br><em>INTENTION.</em></h2><a class="profile-email" href="mailto:sebastianmarquez.official@gmail.com">sebastianmarquez.official@gmail.com ↗</a><div class="profile-contact-links"><a href="https://github.com/seaboose">GITHUB ↗</a><a href="assets/sebastian-marquez-resume.docx">RESUME ↓</a><a href="index.html#console">BACK TO CONSOLE ↑</a></div></section>
+  <section class="profile-about" id="about" aria-labelledby="about-title">
+    <div class="profile-intro">
+      <span class="profile-eyebrow">THE PERSON / BEHIND THE WORK</span>
+      <h2 id="about-title"><span class="profile-name-line">SEBASTIAN</span><span class="profile-nickname">“seaboose”</span><em class="profile-name-line">MARQUEZ.</em></h2>
+      <p>Information Security master’s student connecting software, incident documentation, and human judgment.</p>
+      <a href="assets/sebastian-marquez-resume.docx?v=019b20dc38f2" class="profile-link">GENERAL RESUME ↓ DOCX</a>
+      <span class="profile-download-note">A broader view of my background and work.</span>
+    </div>
+    <div class="profile-detail">
+      <div class="profile-tabs" role="tablist" aria-label="Career overview">
+        <button id="profile-tab" type="button" role="tab" aria-selected="true" aria-controls="profile-panel">CAREER BRIEF</button>
+        <button id="experience-tab" type="button" role="tab" aria-selected="false" aria-controls="experience-panel" tabindex="-1">EXPERIENCE</button>
+        <button id="course-tab" type="button" role="tab" aria-selected="false" aria-controls="course-panel" tabindex="-1">COURSE OUTLINE</button>
+      </div>
+      <div id="profile-panel" class="profile-panel career-brief" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <span class="profile-eyebrow">EARLY CAREER / SECURITY</span>
+        <h3>One background.<br>Several ways to contribute.</h3>
+        <p>Explore how my projects, work experience, and studies connect to different security roles.</p>
+        <div class="career-lenses" role="tablist" aria-label="Explore my security interests">
+          <button id="engineering-lens" type="button" role="tab" aria-selected="true" aria-controls="engineering-evidence">ENGINEERING</button>
+          <button id="operations-lens" type="button" role="tab" aria-selected="false" aria-controls="operations-evidence" tabindex="-1">OPERATIONS</button>
+          <button id="assurance-lens" type="button" role="tab" aria-selected="false" aria-controls="assurance-evidence" tabindex="-1">RISK &amp; ASSURANCE</button>
+        </div>
+        <div class="career-evidence" id="engineering-evidence" role="tabpanel" aria-labelledby="engineering-lens" tabindex="0">
+          <span class="career-proof-type">EVIDENCE / SOFTWARE PROJECTS</span>
+          <h4>Build for investigation.</h4>
+          <p>Surge connects gameplay telemetry, rule findings, replay, and reports. StudyStep brings source checks and human review into a local AI workflow.</p>
+          <ul><li>Input validation and bounded imports</li><li>Regression tests and packaged-app checks</li></ul>
+          <div class="career-evidence-links"><a href="act.html?project=surge">EXPLORE SURGE ↗</a><a href="learn.html?project=studystep">EXPLORE STUDYSTEP ↗</a></div>
+        </div>
+        <div class="career-evidence" id="operations-evidence" role="tabpanel" aria-labelledby="operations-lens" tabindex="0" hidden>
+          <span class="career-proof-type">EVIDENCE / SECURITY OFFICER EXPERIENCE</span>
+          <h4>Observe. Document. Escalate.</h4>
+          <p>At Knott’s Berry Farm, I recorded incidents and witness accounts, escalated safety concerns, and handled difficult guest interactions.</p>
+          <ul><li>Clear reporting and staff coordination</li><li>Calm communication under pressure</li></ul>
+          <div class="career-evidence-links"><a href="#experience-panel" data-open-experience>VIEW WORK EXPERIENCE →</a></div>
+        </div>
+        <div class="career-evidence" id="assurance-evidence" role="tabpanel" aria-labelledby="assurance-lens" tabindex="0" hidden>
+          <span class="career-proof-type">EVIDENCE / CURRENT STUDY + PROJECT DESIGN</span>
+          <h4>Make decisions traceable.</h4>
+          <p>I’m studying IT auditing and software-defined networks. My projects emphasize source-linked findings, clear limits, and review before action.</p>
+          <ul><li>GBA 5100 and GBA 6270 · in progress</li><li>Interest in governance, auditing, and secure AI</li></ul>
+          <div class="career-evidence-links"><a href="#course-panel" data-open-courses>EXPLORE COURSEWORK →</a><a href="learn.html?project=studystep#step-4">SEE SOURCE CHECKS ↗</a></div>
+        </div>
+        <div class="career-brief-footer"><span>M.S. INFORMATION SECURITY</span><span>Cal Poly Pomona · Expected May 2028</span></div>
+      </div>
+      <div id="experience-panel" class="profile-panel" role="tabpanel" aria-labelledby="experience-tab" tabindex="0" hidden>
+        <span class="profile-eyebrow">EXPERIENCE / A GROWING FOUNDATION</span>
+        <div class="career-timeline">
+          <article><span class="career-date">ONGOING / PERSONAL PROJECTS</span><h3>Surge + StudyStep</h3><p>Building desktop tools for evidence review and source-linked learning.</p><a href="https://github.com/seaboose" class="profile-link">EXPLORE THE SOURCE ↗</a></article>
+          <article><span class="career-date">JUN 2023 / EDUCATION</span><h3>Computer Information Systems</h3><p>Bachelor of Business · Cyber Security minor<br>Cal Poly Pomona</p></article>
+          <article><span class="career-date">JUN 2019 — JUL 2021 / WORK</span><h3>Security Officer</h3><strong>Knott’s Berry Farm</strong><p>Incident reporting, witness information, safety escalation, and guest communication.</p></article>
+        </div>
+        <div class="career-language">COMMUNICATION <span>English + Spanish</span></div>
+      </div>
+      <div id="course-panel" class="profile-panel" role="tabpanel" aria-labelledby="course-tab" tabindex="0" hidden>
+        <div class="course-overview"><span class="profile-eyebrow">MSIS / FALL 2026 COHORT</span><p data-course-summary>2 in progress · 8 planned</p><span class="course-standing-date">STANDING UPDATED / NOV 2026</span></div>
+        <nav class="course-term-nav" aria-label="Course terms" data-course-nav></nav><div class="course-scroll" tabindex="0" aria-label="Scroll through the program course outline" data-course-list></div><div class="course-bottom"><span>SCROLL TO EXPLORE ↓</span><a href="https://www.cpp.edu/cba/sgsb/curriculum/msis-online-curriculum.shtml">OFFICIAL CURRICULUM ↗</a></div>
+      </div>
+    </div>
+  </section>
+  <section class="profile-contact"><span class="profile-eyebrow">NEXT / START A CONVERSATION</span><h2>LET’S BUILD WITH<br><em>INTENTION.</em></h2><a class="profile-email" href="mailto:sebastianmarquez.official@gmail.com">sebastianmarquez.official@gmail.com ↗</a><div class="profile-contact-links"><a href="https://github.com/seaboose">GITHUB ↗</a><a href="assets/sebastian-marquez-resume.docx?v=019b20dc38f2">RESUME ↓</a><a href="index.html#console">BACK TO CONSOLE ↑</a></div></section>
 </div>
 
 <!-- SHARED PROFILE END -->
@@ -111,7 +184,7 @@
 <footer class="site-footer"><span>© 2026 SEBASTIAN “seaboose” MARQUEZ</span><span>INFORMATION SECURITY / ALWAYS LEARNING</span><span>BUILT TO BE INSPECTED.</span></footer>
 <script>
 // Restore the last console frame before asynchronous scene initialization on browser Back.
-try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&performance.getEntriesByType('navigation')[0]?.type==='back_forward'&&history.state?.traceResume){const frame=JSON.parse(sessionStorage.getItem('portfolio:console-frame')||'null'),stage=document.querySelector('.story-stage');if(frame&&frame.width===stage.clientWidth&&frame.height===stage.clientHeight&&/^data:image\/webp;base64,/.test(frame.image)&&/^matrix3d\([-\d.e,\s]+\)$/.test(frame.transform)){document.documentElement.classList.add('scene-restoring');document.querySelector('.scene-resume').style.backgroundImage=`url("${frame.image}")`;const screen=document.querySelector('.terminal-launchpad');screen.style.transform=frame.transform;screen.style.display='block';document.querySelector('.trace-controls').hidden=false;document.querySelector('#replay-trace').hidden=false;}}}catch{}
+try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&performance.getEntriesByType('navigation')[0]?.type==='back_forward'&&history.state?.traceResume){const frame=JSON.parse(sessionStorage.getItem('portfolio:console-frame')||'null'),stage=document.querySelector('.story-stage');if(frame&&frame.release===document.querySelector('meta[name="portfolio-release"]')?.content&&frame.width===stage.clientWidth&&frame.height===stage.clientHeight&&/^data:image\/webp;base64,/.test(frame.image)&&/^matrix3d\([-\d.e,\s]+\)$/.test(frame.transform)){document.documentElement.classList.add('scene-restoring');document.querySelector('.scene-resume').style.backgroundImage=`url("${frame.image}")`;const screen=document.querySelector('.terminal-launchpad');screen.style.transform=frame.transform;screen.style.display='block';document.querySelector('.trace-controls').hidden=false;document.querySelector('#replay-trace').hidden=false;}}}catch{}
 </script>
-<noscript><style>.defender-scene{position:relative!important;inset:auto!important;transform:none!important;opacity:1!important;pointer-events:auto!important}.story-stage{height:auto!important;overflow:visible!important}.workstation{height:700px!important}.opening-copy{position:relative!important;min-height:650px;padding-top:400px}.defender-scene{margin-top:50px}.event-flight{display:none!important}.defender-monitor{transform:none!important}.console-section{padding:35px 5%!important}.workstation{opacity:1!important}.opening-copy{opacity:1!important}.trace-scene,.trace-copy,.defense-copy{display:none!important}.story{height:100svh!important}.project-panel[hidden]{display:block!important}.project-sidebar{display:none!important}.story{height:auto!important}.story-stage{position:relative!important}.defender-monitor{position:relative!important;left:auto!important;top:auto!important;width:92%;margin:0 auto}.console-body{display:block!important}.learn-controls{display:none!important}</style></noscript>
+<noscript><style>.story{height:auto!important}.story-stage{position:relative!important;height:auto!important;min-height:100svh!important}.story-stage>*:not(.static-story){display:none!important}.story-stage:after{display:none!important}.static-story{display:grid!important}</style></noscript>
 </body></html>

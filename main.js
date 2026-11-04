@@ -1,11 +1,23 @@
-import {createTraceAudio} from './trace-audio.js';
+import {createTraceAudio} from './trace-audio.js?v=019b20dc38f2';
+
+// One clock drives camera, labels and sound together. Wheel notches ease into
+// position without changing native document scrolling or overshooting a scene.
+export function smoothTraceProgress(current,target,elapsedMs,{snap=false,responseMs=85}={}){
+  target=Math.min(1,Math.max(0,target));
+  if(snap||!Number.isFinite(current))return target;
+  const next=current+(target-current)*(-Math.expm1(-Math.max(0,elapsedMs)/responseMs));
+  return Math.abs(target-next)<.00002?target:next;
+}
 
 (() => {
+  if(typeof document==='undefined')return;
   const $=s=>document.querySelector(s),story=$('.story'),stage=$('.story-stage');if(!story)return;
   const opening=$('.opening-copy'),mapCopy=$('.trace-copy'),defenseCopy=$('.defense-copy'),defender=$('.defender-scene'),monitor=$('.defender-monitor');
   const reduced=matchMedia('(prefers-reduced-motion:reduce)');
+  const staticView=new URLSearchParams(location.search).get('view')==='static';
+  if(staticView)document.body.classList.add('static-render');
   const clamp=n=>Math.min(1,Math.max(0,n)),ease=(a,b,p)=>{const q=clamp((p-a)/(b-a));return q*q*(3-2*q);};
-  let pending=false,atConsole=false,wantFocus=false,scene=null,lastProgress=0,skipSound=false,loadingScene=false;
+  let pending=0,atConsole=false,wantFocus=false,scene=null,lastProgress=0,skipSound=false,loadingScene=false,frameTime=0,snapProgress=true;
   let resumeRequested=performance.getEntriesByType('navigation')[0]?.type==='back_forward'&&history.state?.traceResume?clamp(history.state.traceResume.progress??1):null;
   const sound=createTraceAudio($('#sound-toggle'),$('#sound-status')),replay=$('#replay-trace');
   $('.trace-controls').hidden=false;
@@ -15,11 +27,13 @@ import {createTraceAudio} from './trace-audio.js';
   const consoleHold=()=>Math.min(innerHeight*.8,650);
   const traceTravel=()=>Math.max(1,story.offsetHeight-stage.offsetHeight-consoleHold());
   const visible=(el,opacity,interactive=false)=>{el.style.opacity=opacity;el.inert=opacity<.94;el.style.pointerEvents=interactive&&opacity>.94?'auto':'none';};
-  function paint(){
-    pending=false;
-    if(reduced.matches){consoleCue.hidden=true;sound.stop();replay.hidden=false;scene?.pause(true);opening.inert=false;defender.inert=false;defender.style.pointerEvents='auto';mapCopy.inert=true;defenseCopy.inert=true;return;}
+  function paint(time=performance.now()){
+    if(pending)cancelAnimationFrame(pending);pending=0;
+    const staticMode=reduced.matches||document.body.classList.contains('static-render');$('.trace-controls').hidden=staticMode;
+    if(staticMode){consoleCue.hidden=true;sound.stop();replay.hidden=true;scene?.pause(true);mapCopy.inert=true;defenseCopy.inert=true;return;}
     scene?.pause(false);
-    const r=story.getBoundingClientRect(),p=clamp(-r.top/Math.max(1,traceTravel()));lastProgress=p;atConsole=p>.995&&r.bottom>=stage.offsetHeight-40;
+    const r=story.getBoundingClientRect(),target=clamp(-r.top/Math.max(1,traceTravel())),elapsed=frameTime?Math.max(0,Math.min(64,time-frameTime)):16.67;
+    const shouldSnap=snapProgress||r.bottom<=0||r.top>innerHeight,p=smoothTraceProgress(lastProgress,target,elapsed,{snap:shouldSnap});snapProgress=false;frameTime=time;lastProgress=p;atConsole=p>.995&&r.bottom>=stage.offsetHeight-40;
     consoleCue.hidden=p<.995;
     sound.update(p,{silent:skipSound});if(p>.995)skipSound=false;replay.hidden=p<.94;
     story.style.setProperty('--p',p);
@@ -36,33 +50,35 @@ import {createTraceAudio} from './trace-audio.js';
     const chapters=p<.18?['01 / INTENT','A PROMPT BECOMES AN ACTION']:p<.43?['02 / THE CONNECTION','WORKSTATION → ROUTER']:p<.69?['03 / ACROSS THE NETWORK','FOLLOW EVENT E01']:p<.93?['04 / THE RESPONSE','ALERT → ANALYST WORKSTATION']:['05 / THE WORK','ACT / LEARN'];
     $('#journey-chapter').textContent=chapters[0];$('#journey-detail').textContent=chapters[1];$('#scene-number').textContent=chapters[0].slice(0,2);
     $('.journey-label').style.opacity=1-ease(.93,.98,p);visible($('.map-caption'),ease(.41,.45,p)*(1-ease(.66,.70,p)));
-    if(scene)scene.setProgress(p);
+    if(scene)scene.setProgress(p,{immediate:shouldSnap});
     // The CSS workstation remains available as a low-motion/static fallback.
     if(fallback){$('.workstation').style.opacity=1-ease(.25,.4,p);$('.trace-scene').style.opacity=ease(.4,.48,p)*(1-ease(.66,.74,p));}
     if(wantFocus&&p>.999&&(scene||fallback)){wantFocus=false;(scene?$(location.hash==='#learn'?'#terminal-learn':'#terminal-act'):$(location.hash==='#learn'?'#learn-tab':'#act-tab')).focus({preventScroll:true});}
+    if(p!==target&&!document.hidden)schedule();
   }
-  function schedule(){if(!pending){pending=true;requestAnimationFrame(paint);}}
-  function goConsole(instant=false,focus=false){skipSound=true;sound.stop();if(reduced.matches){$('#console').scrollIntoView({behavior:instant?'instant':'smooth'});return;}wantFocus=focus;scrollTo({top:scrollY+story.getBoundingClientRect().top+traceTravel()+Math.min(100,consoleHold()*.15),behavior:instant?'instant':'smooth'});schedule();}
-  replay.addEventListener('click',()=>{sound.reset();skipSound=false;wantFocus=false;atConsole=false;history.replaceState(null,'','#story');scrollTo({top:scrollY+story.getBoundingClientRect().top,behavior:'instant'});paint();storyTitle.focus({preventScroll:true});});
+  function schedule(){if(!pending)pending=requestAnimationFrame(paint);}
+  function goConsole(instant=false,focus=false){skipSound=true;sound.stop();if(reduced.matches||document.body.classList.contains('static-render')){$('#static-projects')?.scrollIntoView({behavior:instant||reduced.matches?'instant':'smooth'});return;}if(instant)snapProgress=true;wantFocus=focus;scrollTo({top:scrollY+story.getBoundingClientRect().top+traceTravel()+Math.min(100,consoleHold()*.15),behavior:instant?'instant':'smooth'});schedule();}
+  replay.addEventListener('click',()=>{sound.reset();skipSound=false;wantFocus=false;atConsole=false;snapProgress=true;history.replaceState(null,'','#story');scrollTo({top:scrollY+story.getBoundingClientRect().top,behavior:'instant'});paint();storyTitle.focus({preventScroll:true});});
   addEventListener('wheel',()=>{skipSound=false;},{passive:true});addEventListener('touchstart',()=>{skipSound=false;},{passive:true});
   addEventListener('keydown',e=>{if(['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '].includes(e.key))skipSound=false;});
-  function resize(){if(atConsole)goConsole(true);scene?.resize();schedule();}
+  function resize(){snapProgress=true;if(atConsole)goConsole(true);scene?.resize();schedule();}
   addEventListener('scroll',schedule,{passive:true});addEventListener('resize',resize,{passive:true});reduced.addEventListener('change',()=>{if(reduced.matches){document.documentElement.classList.remove('scene-loading','scene-restoring');$('.scene-resume').style.backgroundImage='';}else if(!scene)loadScene();schedule();});
   document.querySelectorAll('a[href="#console"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();history.pushState(null,'','#console');goConsole(false,true);}));
-  function route(){if(resumeRequested!==null){const progress=resumeRequested;resumeRequested=null;if(reduced.matches)goConsole(true);else{skipSound=true;scrollTo({top:scrollY+story.getBoundingClientRect().top+traceTravel()*progress,behavior:'instant'});}return;}if(['#learn','#act','#console'].includes(location.hash))goConsole(true);}addEventListener('hashchange',route);
+  function route(){snapProgress=true;if(resumeRequested!==null){const progress=resumeRequested;resumeRequested=null;if(reduced.matches||document.body.classList.contains('static-render'))goConsole(true);else{skipSound=true;scrollTo({top:scrollY+story.getBoundingClientRect().top+traceTravel()*progress,behavior:'instant'});}schedule();return;}if(['#learn','#act','#console'].includes(location.hash))goConsole(true);else if(location.hash==='#story'){wantFocus=false;scrollTo({top:scrollY+story.getBoundingClientRect().top,behavior:'instant'});schedule();}}addEventListener('hashchange',route);
   document.addEventListener('click',e=>{
     const link=e.target.closest('a');if(!link||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||!scene||lastProgress<.87)return;
     const target=new URL(link.href,location.href);if(target.origin!==location.origin||!/(?:act|learn|surge|studystep)\.html$/.test(target.pathname))return;
     history.replaceState({...history.state,traceResume:{progress:lastProgress}},'',location.href);
-    try{const image=scene.captureFrame();if(image)sessionStorage.setItem('portfolio:console-frame',JSON.stringify({image,transform:$('.terminal-launchpad').style.transform,width:stage.clientWidth,height:stage.clientHeight}));}catch{}
+    try{const image=scene.captureFrame();if(image)sessionStorage.setItem('portfolio:console-frame',JSON.stringify({release:document.querySelector('meta[name="portfolio-release"]')?.content||'dev',image,transform:$('.terminal-launchpad').style.transform,width:stage.clientWidth,height:stage.clientHeight}));}catch{}
   });
-  addEventListener('pageshow',e=>{if(e.persisted){scene?.resize();paint();}});
+  addEventListener('pageshow',e=>{if(e.persisted){snapProgress=true;frameTime=0;scene?.resize();paint();}});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden){snapProgress=true;frameTime=0;schedule();}});
   const boundaries=[['SOURCE CHECK','Compare the draft with its source.'],['ONE REVISION','Use one revision to refine the draft.'],['HUMAN APPROVAL','Review the draft. Decide what to save.']],buttons=[...document.querySelectorAll('[data-learn-stage]')];
   buttons.forEach((b,i)=>b.addEventListener('click',()=>{buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#learn-state').textContent=boundaries[i][0];$('#learn-result').textContent=boundaries[i][1];}));
   function loadScene(){
-    if(reduced.matches||scene||loadingScene)return;loadingScene=true;document.documentElement.classList.add('scene-loading');document.body.classList.remove('static-render');
-    import('./hardware-scene.js').then(m=>m.createHardwareScene(stage,{initialProgress:lastProgress})).then(s=>{scene=s;paint();document.documentElement.classList.remove('scene-loading','scene-restoring');$('.scene-resume').style.backgroundImage='';document.querySelector('.hardware-canvas')?.addEventListener('webglcontextrestored',()=>{scene.resize();paint();});}).catch(()=>{document.querySelector('.hardware-canvas')?.remove();document.querySelector('.physical-enter')?.remove();document.querySelector('.packet-tag')?.remove();document.querySelector('.server-alert')?.remove();$('.terminal-launchpad').style.display='none';$('.terminal-launchpad').inert=true;$('.scene-resume').style.backgroundImage='';document.body.classList.remove('webgl-ready');document.body.classList.add('static-render');document.documentElement.classList.remove('scene-loading','scene-restoring');schedule();}).finally(()=>{loadingScene=false;});
+    if(staticView||reduced.matches||scene||loadingScene)return;loadingScene=true;document.documentElement.classList.add('scene-loading');document.body.classList.remove('static-render');
+    import('./hardware-scene.js?v=019b20dc38f2').then(m=>m.createHardwareScene(stage,{initialProgress:lastProgress})).then(s=>{scene=s;snapProgress=true;paint();document.documentElement.classList.remove('scene-loading','scene-restoring');$('.scene-resume').style.backgroundImage='';document.querySelector('.hardware-canvas')?.addEventListener('webglcontextrestored',()=>{scene.resize();paint();});}).catch(error=>{console.warn('Portfolio 3D scene unavailable; using the accessible static view.',error?.message||error);document.querySelector('.hardware-canvas')?.remove();document.querySelector('.physical-enter')?.remove();document.querySelector('.packet-tag')?.remove();document.querySelector('.server-alert')?.remove();$('.terminal-launchpad').style.display='none';$('.terminal-launchpad').inert=true;$('.scene-resume').style.backgroundImage='';document.body.classList.remove('webgl-ready');document.body.classList.add('static-render');document.documentElement.classList.remove('scene-loading','scene-restoring');if(['#learn','#act','#console'].includes(location.hash))goConsole(true);schedule();}).finally(()=>{loadingScene=false;});
   }
   route();paint();document.fonts.ready.then(resize);loadScene();
-  fetch('./project-catalog.json').then(r=>r.ok?r.json():null).then(catalog=>{if(Array.isArray(catalog?.projects))$('[data-project-total]').textContent=String(catalog.projects.filter(p=>['act','learn'].includes(p.category)).length).padStart(2,'0');}).catch(()=>{});
+  fetch('./project-catalog.json?v=019b20dc38f2').then(r=>r.ok?r.json():null).then(catalog=>{if(Array.isArray(catalog?.projects))$('[data-project-total]').textContent=String(catalog.projects.filter(p=>['act','learn'].includes(p.category)).length).padStart(2,'0');}).catch(()=>{});
 })();

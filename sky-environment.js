@@ -1,4 +1,4 @@
-import * as T from './assets/vendor/three.module.js';
+import * as T from './assets/vendor/three.module.js?v=019b20dc38f2';
 
 // An authored overcast panorama: soft cloud volumes, a natural horizon, no remote asset.
 export function createAtmosphere(){

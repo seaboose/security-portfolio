@@ -1,7 +1,7 @@
-import {openScreenshot} from './media-viewer.js';
-import {mountSurgeDemo} from './surge-demo.js';
-import {mountStudyStepDemo} from './studystep-demo.js';
-import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js';
+import {openScreenshot} from './media-viewer.js?v=019b20dc38f2';
+import {mountSurgeDemo} from './surge-demo.js?v=019b20dc38f2';
+import {mountStudyStepDemo} from './studystep-demo.js?v=019b20dc38f2';
+import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js?v=019b20dc38f2';
 const $=selector=>document.querySelector(selector);
 const tour=$('.project-tour'),pin=$('.tour-pin'),picker=$('#project-picker'),controls=$('.step-controls');
 const categoryId=document.body.dataset.category,reduced=matchMedia('(prefers-reduced-motion:reduce)');
@@ -9,12 +9,12 @@ const clamp=value=>Math.min(1,Math.max(0,value)),pad=value=>String(value).padSta
 let projects=[],project=null,active=-1,progress=0,travel=0,pending=false,manual=false,buttons=[];
 let demo=null,motionPaused=false,inView=true,mediaOpen=false;
 const wheelGate=createWheelStepGate(),coarsePointer=matchMedia('(pointer:coarse)');
-let stepAnimations=[],branchNavigating=false;
+let stepAnimations=[],branchNavigating=false,scrollDestination=null;
 const motionButton=$('[data-motion-toggle]'),screenshotButton=$('[data-open-screenshot]');
 function pauseDemo(){demo?.pause(motionPaused||reduced.matches||!inView||document.hidden||mediaOpen);}
 motionButton.addEventListener('click',()=>{motionPaused=!motionPaused;motionButton.setAttribute('aria-pressed',String(motionPaused));motionButton.textContent=motionPaused?'PLAY MOTION':'PAUSE MOTION';pauseDemo();});
 screenshotButton.addEventListener('click',()=>{const visual=project.steps[active].visual;openScreenshot({src:visual.screenshot,alt:visual.screenshotAlt||visual.alt||`${project.name} application screenshot`,caption:`${project.name} ${project.version} · Recorded application screen`},screenshotButton);});
-addEventListener('portfolio:media',event=>{mediaOpen=event.detail.open;wheelGate.reset();pauseDemo();});
+addEventListener('portfolio:media',event=>{mediaOpen=event.detail.open;scrollDestination=null;wheelGate.reset();pauseDemo();});
 document.addEventListener('visibilitychange',pauseDemo);
 new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;pauseDemo();},{threshold:.05}).observe(pin);
 
@@ -69,6 +69,7 @@ function setProgress(value){
 }
 function pinTop(){return parseFloat(getComputedStyle(pin).top)||0;}
 function layout(){
+  scrollDestination=null;
   manual=reduced.matches||innerHeight<720||(innerWidth<=700&&innerHeight<800);
   document.body.classList.toggle('category-manual',manual);
   $('[data-scroll-hint]').textContent=manual?'CHOOSE A STEP BELOW':coarsePointer.matches?'SCROLL TO EXPLORE ↓':'SCROLL ONE STEP ↓';wheelGate.reset();
@@ -79,18 +80,27 @@ function paint(){
   pending=false;if(!project||mediaOpen)return;
   if(manual){setProgress(project.steps.length===1?1:Math.max(0,active)/(project.steps.length-1));return;}
   const p=travel?clamp((pinTop()-tour.getBoundingClientRect().top)/travel):1;
+  // Keep the chosen panel steady while its scroll anchor glides into place.
+  // Otherwise a smooth jump briefly replays each intermediate panel.
+  if(scrollDestination){
+    if(Math.abs(scrollY-scrollDestination.top)<1||performance.now()>=scrollDestination.until)scrollDestination=null;
+    else{setProgress(p);return;}
+  }
   setStep(Math.min(project.steps.length-1,Math.floor(p*project.steps.length)));setProgress(p);
 }
 function schedule(){if(!pending){pending=true;requestAnimationFrame(paint);}}
 function updateUrl(index){const url=new URL(location.href);url.searchParams.set('project',project.id);url.hash=`step-${index+1}`;history.replaceState(null,'',url);}
-function jump(index,{focus=false,updateHistory=true,viaWheel=false}={}){
+function jump(index,{focus=false,updateHistory=true,viaWheel=false,smooth=true}={}){
   if(!viaWheel)wheelGate.reset();
   index=Math.min(project.steps.length-1,Math.max(0,index));
   setStep(index,true);
   if(manual)setProgress(project.steps.length===1?1:index/(project.steps.length-1));
   else {
     const p=project.steps.length===1?1:(index+.30)/project.steps.length;
-    scrollTo({top:scrollY+tour.getBoundingClientRect().top-pinTop()+travel*p,behavior:'instant'});setProgress(p);schedule();
+    const top=Math.max(0,Math.min(document.documentElement.scrollHeight-innerHeight,scrollY+tour.getBoundingClientRect().top-pinTop()+travel*p));
+    const animate=smooth&&!reduced.matches&&Math.abs(scrollY-top)>1;
+    scrollDestination=animate?{top,until:performance.now()+1000}:null;
+    scrollTo({top,behavior:animate?'smooth':'instant'});if(!animate)setProgress(p);schedule();
   }
   if(updateHistory)updateUrl(index);
   if(focus){buttons[index].focus({preventScroll:true});const button=buttons[index];controls.scrollTo({left:Math.max(0,button.offsetLeft-controls.offsetLeft-(controls.clientWidth-button.offsetWidth)/2),behavior:'instant'});}
@@ -118,7 +128,7 @@ function selectProject(next,{reset=true}={}){
 function route(){
   const wanted=new URLSearchParams(location.search).get('project');
   const found=projects.find(item=>item.id===wanted)||projects[0];if(project!==found)selectProject(found,{reset:false});
-  const match=location.hash.match(/^#step-(\d+)$/);if(match)jump(Number(match[1])-1,{updateHistory:false});
+  const match=location.hash.match(/^#step-(\d+)$/);if(match)jump(Number(match[1])-1,{updateHistory:false,smooth:false});
 }
 function nestedScroll(target,delta){
   for(let node=target instanceof Element?target:null;node&&node!==pin&&node!==document.body;node=node.parentElement){
@@ -132,11 +142,11 @@ function onWheel(event){
   const ownsScroll=project&&!manual&&!reduced.matches&&!coarsePointer.matches&&!mediaOpen&&event.cancelable&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&Math.abs(event.deltaX)<=Math.abs(event.deltaY)&&((rect.top<=top+3&&rect.bottom>=top+pin.offsetHeight-3)||canEnter)&&!nestedScroll(event.target,delta);
   if(ownsScroll&&canEnter){event.preventDefault();wheelGate.hold({time:performance.now(),direction:1});jump(Math.max(0,active),{viaWheel:true});return;}
   const decision=wheelGate.consume({delta,time:performance.now(),index:active,count:project?.steps.length||0,enabled:ownsScroll});
-  if(!decision.capture)return;event.preventDefault();pin.style.setProperty('--step-intent',decision.intent);
+  if(!decision.capture){scrollDestination=null;return;}event.preventDefault();pin.style.setProperty('--step-intent',decision.intent);
   if(decision.next!==null)jump(decision.next,{viaWheel:true});
 }
 try{
-  const response=await fetch('./project-catalog.json');if(!response.ok)throw Error('Project catalog unavailable');
+  const response=await fetch('./project-catalog.json?v=019b20dc38f2');if(!response.ok)throw Error('Project catalog unavailable');
   const catalog=await response.json();projects=catalog.projects.filter(item=>item.category===categoryId);
   if(!projects.length||projects.some(item=>!Array.isArray(item.steps)||!item.steps.length))throw Error('Category has no project walkthrough');
   $('[data-category-description]').textContent=catalog.categories[categoryId].description;
@@ -145,7 +155,9 @@ try{
   picker.addEventListener('change',()=>selectProject(projects.find(item=>item.id===picker.value)));
   addBranchSwitch(catalog);route();document.body.classList.add('category-ready');
   addEventListener('scroll',schedule,{passive:true});
-  addEventListener('wheel',onWheel,{passive:false});addEventListener('touchstart',()=>wheelGate.reset(),{passive:true});addEventListener('keydown',()=>wheelGate.reset());
+  addEventListener('wheel',onWheel,{passive:false});
+  const nativeInput=event=>{if(event.defaultPrevented)return;scrollDestination=null;wheelGate.reset();};
+  addEventListener('touchstart',nativeInput,{passive:true});addEventListener('pointerdown',nativeInput,{passive:true});addEventListener('keydown',nativeInput);
   addEventListener('resize',()=>{if(mediaOpen)return;const rect=tour.getBoundingClientRect(),wasPinned=project&&!manual&&rect.top<=pinTop()+5&&rect.bottom>=pinTop()+pin.offsetHeight-5,previousProgress=progress;layout();if(wasPinned&&!manual)scrollTo({top:scrollY+tour.getBoundingClientRect().top-pinTop()+travel*previousProgress,behavior:'instant'});schedule();},{passive:true});
   reduced.addEventListener('change',()=>{motionButton.disabled=reduced.matches;if(reduced.matches){stepAnimations.forEach(animation=>animation.cancel());stepAnimations=[];}pauseDemo();layout();schedule();});addEventListener('hashchange',route);addEventListener('popstate',route);addEventListener('pageshow',()=>{branchNavigating=false;document.body.classList.remove('branch-leaving');layout();schedule();});
   document.fonts.ready.then(()=>{layout();schedule();});

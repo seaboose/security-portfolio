@@ -1,15 +1,15 @@
-import * as T from './assets/vendor/three.module.js';
-import {drawScreen} from './screen-textures.js';
-import {createAtmosphere} from './sky-environment.js';
+import * as T from './assets/vendor/three.module.js?v=019b20dc38f2';
+import {drawScreen} from './screen-textures.js?v=019b20dc38f2';
+import {createAtmosphere} from './sky-environment.js?v=019b20dc38f2';
 
 const V=(x,y,z)=>new T.Vector3(x,y,z);
 const clamp=x=>Math.max(0,Math.min(1,x));
-const ease=(a,b,p)=>{const t=clamp((p-a)/(b-a));return t*t*(3-2*t);};
+const ease=(a,b,p)=>{const t=clamp((p-a)/(b-a));return t*t*t*(t*(t*6-15)+10);};
 const mix=(a,b,t)=>a.clone().lerp(b,t);
 
 export async function createHardwareScene(stage,{initialProgress=0}={}){
   const [geo,securityTexture]=await Promise.all([
-    fetch('./assets/world-land.json').then(r=>{if(!r.ok)throw Error('Map asset unavailable');return r.json();}),
+    fetch('./assets/world-land.json?v=019b20dc38f2').then(r=>{if(!r.ok)throw Error('Map asset unavailable');return r.json();}),
     new T.TextureLoader().loadAsync('./assets/security-field.svg').catch(()=>null)
   ]);
   const renderer=new T.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
@@ -345,13 +345,16 @@ export async function createHardwareScene(stage,{initialProgress=0}={}){
   resize();
   const focus=(position,target)=>({position,target});
   function blend(a,b,t){return focus(mix(a.position,b.position,t),mix(a.target,b.target,t));}
+  // Construct the orbit once, rather than allocating its arc-length cache on
+  // every frame of the tight Enter-to-workstation turn.
+  let enterOrbit=null,orbitAspect=0;
   function cameraPose(p){
     const aspect=width/height,dist=aspect<.85?Math.min(22,12/Math.sqrt(aspect)):Math.max(10.3,14/aspect);
     const initial=focus(V(.4,3.65,dist),V(.4,1.95,0));
     const close=focus(enterWorld.clone().add(V(.02,.02,aspect<.85?1.65:1.1)),enterWorld);
     if(p<.17)return blend(initial,close,ease(.015,.135,p));
     const back=focus(V(7.1,2.7,-3.0),backPort);
-    if(p<.25){const q=ease(.17,.25,p);const orbit=new T.CatmullRomCurve3([close.position,V(5.1,3.3,2.7),V(7.5,2.9,-1.8),back.position]);return focus(orbit.getPoint(q),mix(enterWorld,backPort,q));}
+    if(p<.25){const q=ease(.17,.25,p);if(!enterOrbit||orbitAspect!==aspect){enterOrbit=new T.CatmullRomCurve3([close.position,V(5.1,3.3,2.7),V(7.5,2.9,-1.8),back.position]);orbitAspect=aspect;}return focus(enterOrbit.getPoint(q),mix(enterWorld,backPort,q));}
     const routerPose=focus(V(-2.1,2.5,3.5),V(-3.65,.98,.80));
     if(p<.35){const q=ease(.25,.35,p),point=firstCable.getPointAt(q),offset=mix(back.position.clone().sub(firstCableStart),routerPose.position.clone().sub(firstCableEnd),q),target=mix(backPort,point,ease(0,.2,q));return focus(point.clone().add(offset),mix(target,routerPose.target,ease(.75,1,q)));}
     const mapDistance=aspect<.85?20.5/aspect:12.8;
@@ -385,7 +388,7 @@ export async function createHardwareScene(stage,{initialProgress=0}={}){
     const mapAtmosphere=ease(.365,.455,p)*(1-ease(.655,.745,p));
     floor.material.color.copy(floorBaseColor).multiplyScalar(1-.72*mapAtmosphere);
     nightSky.position.copy(camera.position);nightSky.material.opacity=1;nightSky.visible=true;const dusk=(1-.18*ease(.69,.80,p))*(1-.72*mapAtmosphere);nightSky.material.color.setRGB(dusk,dusk,dusk*.98);
-    const lightingCenter=p>.675?servers.position:V(0,0,0);key.target.position.copy(lightingCenter);key.position.copy(lightingCenter).add(V(2,9,6));
+    const lightingCenter=mix(V(0,0,0),servers.position,ease(.655,.745,p));key.target.position.copy(lightingCenter);key.position.copy(lightingCenter).add(V(2,9,6));
     workstation.visible=p<.43;firstCable.mesh.visible=plug.visible=routerPlug.visible=p<.43;secondCable.mesh.visible=p>=.69;secondPlug.visible=p>=.69;
     mapCable.mesh.visible=p<.455;
     floor.visible=true;grid.visible=p<.43||p>=.69;
@@ -435,5 +438,5 @@ export async function createHardwareScene(stage,{initialProgress=0}={}){
   document.addEventListener('visibilitychange',visibility);
   document.body.classList.add('webgl-ready');
   render();
-  return {setProgress(p){if(progress===p&&(p<=.43||p>=.69))return;progress=p;if(frame)cancelAnimationFrame(frame);render(performance.now());},captureFrame(){if(paused)return null;try{if(frame)cancelAnimationFrame(frame);render(performance.now());return renderer.domElement.toDataURL('image/webp',.8);}catch{return null;}},pause(value){const changed=paused!==value;paused=value;if(value){launchpad.inert=true;if(frame){cancelAnimationFrame(frame);frame=0;}}else if(changed)render(performance.now());},resize(){if(frame)cancelAnimationFrame(frame);resize();render(lastTime);},dispose(){observer.disconnect();document.removeEventListener('visibilitychange',visibility);if(frame)cancelAnimationFrame(frame);scene.traverse(o=>{o.geometry?.dispose();if(o.material){const materials=Array.isArray(o.material)?o.material:[o.material];materials.forEach(m=>{m.map?.dispose();m.dispose();});}});finish.color.dispose();finish.rough.dispose();bakedTextures.forEach(texture=>texture.dispose());renderer.dispose();renderer.domElement.remove();enterOverlay.remove();alertOverlay.remove();packetTag.remove();launchpad.style.display='none';launchpad.inert=true;}};
+  return {setProgress(p,{immediate=false}={}){if(progress===p&&!immediate)return;progress=clamp(p);if(paused||document.hidden)return;if(immediate){if(frame)cancelAnimationFrame(frame);render(performance.now());}else if(!frame)frame=requestAnimationFrame(render);},captureFrame(){if(paused)return null;try{if(frame)cancelAnimationFrame(frame);render(performance.now());return renderer.domElement.toDataURL('image/webp',.8);}catch{return null;}},pause(value){const changed=paused!==value;paused=value;if(value){launchpad.inert=true;if(frame){cancelAnimationFrame(frame);frame=0;}}else if(changed)render(performance.now());},resize(){if(frame)cancelAnimationFrame(frame);resize();render(lastTime);},dispose(){observer.disconnect();document.removeEventListener('visibilitychange',visibility);if(frame)cancelAnimationFrame(frame);scene.traverse(o=>{o.geometry?.dispose();if(o.material){const materials=Array.isArray(o.material)?o.material:[o.material];materials.forEach(m=>{m.map?.dispose();m.dispose();});}});finish.color.dispose();finish.rough.dispose();bakedTextures.forEach(texture=>texture.dispose());renderer.dispose();renderer.domElement.remove();enterOverlay.remove();alertOverlay.remove();packetTag.remove();launchpad.style.display='none';launchpad.inert=true;}};
 }

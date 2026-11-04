@@ -1,11 +1,44 @@
-const tabs=[...document.querySelectorAll('.profile-tabs [role=tab]')];
-function selectProfile(index,focus=false){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;document.getElementById(tab.getAttribute('aria-controls')).hidden=i!==index;});if(focus)tabs[index].focus({preventScroll:true});}
-tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectProfile(i));tab.addEventListener('keydown',event=>{let next;if(['ArrowRight','ArrowLeft'].includes(event.key))next=1-i;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;if(next!==undefined){event.preventDefault();selectProfile(next,true);}});});
-document.querySelector('[data-open-courses]')?.addEventListener('click',event=>{event.preventDefault();selectProfile(1,true);});
-if(location.hash==='#course-panel')selectProfile(1);
+// Each tab group owns its own panels; adding career sections does not change
+// the course-outline index or the keyboard behavior of the nested role lenses.
+function createTabs(selector){
+  const tabs=[...document.querySelectorAll(`${selector} > [role=tab]`)];
+  function select(index,focus=false){
+    if(!tabs[index])return;
+    tabs.forEach((tab,i)=>{
+      tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;
+      const panel=document.getElementById(tab.getAttribute('aria-controls'));
+      if(panel)panel.hidden=i!==index;
+    });
+    if(focus)tabs[index].focus({preventScroll:true});
+  }
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>select(index));
+    tab.addEventListener('keydown',event=>{
+      let next;
+      if(event.key==='ArrowRight')next=(index+1)%tabs.length;
+      else if(event.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;
+      else if(event.key==='Home')next=0;
+      else if(event.key==='End')next=tabs.length-1;
+      if(next!==undefined){event.preventDefault();select(next,true);}
+    });
+  });
+  return {open(id,focus=false){select(tabs.findIndex(tab=>tab.getAttribute('aria-controls')===id),focus);}};
+}
+const profileTabs=createTabs('.profile-tabs');
+const careerTabs=createTabs('.career-lenses');
+for(const [selector,panel] of [['[data-open-courses]','course-panel'],['[data-open-experience]','experience-panel']]){
+  document.querySelectorAll(selector).forEach(link=>link.addEventListener('click',event=>{event.preventDefault();profileTabs.open(panel,true);}));
+}
+function openProfileHash(){
+  const id=location.hash.slice(1);
+  if(['profile-panel','experience-panel','course-panel'].includes(id))profileTabs.open(id);
+  if(['engineering-evidence','operations-evidence','assurance-evidence'].includes(id)){profileTabs.open('profile-panel');careerTabs.open(id);}
+}
+openProfileHash();
+addEventListener('hashchange',openProfileHash);
 const list=document.querySelector('[data-course-list]'),nav=document.querySelector('[data-course-nav]');
 function el(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
-if(list)fetch('./course-catalog.json').then(r=>{if(!r.ok)throw Error('Course catalog unavailable');return r.json();}).then(data=>{
+if(list)fetch('./course-catalog.json?v=019b20dc38f2').then(r=>{if(!r.ok)throw Error('Course catalog unavailable');return r.json();}).then(data=>{
   document.querySelector('.course-standing-date').textContent='STANDING UPDATED / '+new Date(data.updated+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'}).toUpperCase();
   const statuses={'in-progress':'In progress',completed:'Completed',planned:'Planned'},courses=data.terms.flatMap(term=>term.courses),counts=Object.keys(statuses).map(key=>[key,courses.filter(c=>c.status===key).length]);
   document.querySelector('[data-course-summary]').textContent=counts.filter(([,n])=>n).map(([key,n])=>`${n} ${statuses[key].toLowerCase()}`).join(' · ');
