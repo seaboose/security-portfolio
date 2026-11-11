@@ -7,6 +7,12 @@ const progress=document.getElementById('step-progress');
 let chapters=[],buttons=[],active=-1,pendingSeek=null;
 const time=n=>`${Math.floor((n||0)/60)}:${String(Math.floor((n||0)%60)).padStart(2,'0')}`;
 const local=s=>typeof s==='string'&&!/^(?:[a-z]+:|\/|\\)/i.test(s)&&!s.split(/[\\/]/).includes('..');
+function mediaUrl(path) {
+ const url = new URL(path, document.baseURI);
+ const release = document.querySelector('meta[name="portfolio-release"]')?.content;
+ if (release) url.searchParams.set('v', release);
+ return url.href;
+}
 function update(){
  document.getElementById('video-clock').textContent=`${time(video.currentTime)} / ${time(video.duration)}`;
  progress.max=Number.isFinite(video.duration)?video.duration:112;progress.value=video.currentTime;
@@ -37,13 +43,13 @@ function playback(){play.textContent=video.ended?'Replay walkthrough':video.paus
 ['timeupdate','seeked','durationchange'].forEach(e=>video.addEventListener(e,update));
 video.addEventListener('loadedmetadata',()=>{pending.hidden=true;play.disabled=false;expand.disabled=false;if(pendingSeek!==null){seek(pendingSeek);pendingSeek=null;}update();});
 video.addEventListener('error',()=>{pending.hidden=false;pending.textContent='Video unavailable. You can still read the report below.';play.disabled=true;expand.disabled=true;});
-fetch('./chapters.json?v=49dbad3d0926',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(config=>{
+fetch('./chapters.json?v=5f3716b4ad2c',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(config=>{
  if(!local(config.video)||!Array.isArray(config.chapters)||!config.chapters.length)throw Error();
  let last=-1;config.chapters.forEach(c=>{if(!Number.isFinite(c.start)||c.start<=last||typeof c.title!=='string'||typeof c.copy!=='string')throw Error();last=c.start;});
  if(config.chapters[0].start!==0)throw Error();chapters=config.chapters;
  buttons=chapters.map((c,i)=>{const b=document.createElement('button');b.type='button';const num=document.createElement('span');num.textContent=String(i+1).padStart(2,'0');b.append(num,document.createTextNode(c.label||c.title));b.setAttribute('aria-label',`${c.label||c.title}, ${time(c.start)}`);b.addEventListener('click',()=>seek(i));b.addEventListener('keydown',e=>{const n=e.key==='ArrowRight'?(i+1)%buttons.length:e.key==='ArrowLeft'?(i+buttons.length-1)%buttons.length:null;if(n!==null){e.preventDefault();buttons[n].focus();seek(n);}});return b;});nav.replaceChildren(...buttons);
- if(local(config.poster))video.poster=config.poster;
+ if(local(config.poster))video.poster=mediaUrl(config.poster);
  // Descriptions are optional; the default view explains the footage alongside it.
- if(local(config.captions)){const track=document.createElement('track');track.kind='captions';track.label='Descriptions';track.srclang='en';track.src=config.captions;video.append(track);}
- video.src=config.video;video.load();update();
+ if(local(config.captions)){const track=document.createElement('track');track.kind='captions';track.label='Descriptions';track.srclang='en';track.src=mediaUrl(config.captions);video.append(track);}
+ video.src=mediaUrl(config.video);video.load();update();
 }).catch(()=>{pending.hidden=false;pending.textContent='Walkthrough unavailable. Read the investigation report below.';});

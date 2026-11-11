@@ -5,7 +5,16 @@ let surgeFrames = [
   ['Explain the evidence', 'Link selected observations to an investigation and its report revisions.', 'explain'],
   ['Export the report', 'Export a reviewable investigation with evidence references and consistency checks.', 'export']
 ];
-fetch('./project-catalog.json?v=49dbad3d0926').then(r=>r.ok?r.json():null).then(catalog=>{const project=catalog?.projects?.find(item=>item.id==='surge');if(project)surgeFrames=project.steps.map(step=>[step.heading.join(' '),step.copy,step.visual.screenshot]);}).catch(()=>{});
+fetch('./project-catalog.json?v=5f3716b4ad2c')
+  .then(response => response.ok ? response.json() : null)
+  .then(catalog => {
+    const project = catalog?.projects.find(item => item.id === 'surge');
+    if (!project) return;
+    surgeFrames = project.steps.map((step, index) => {
+      const description = step.visual.screenshotAlt || step.visual.alt || step.copy;
+      return [surgeFrames[index]?.[0] || step.label, description, step.visual.screenshot];
+    });
+  }).catch(() => {});
 const studyFrames = [
   ['Draft from selected material', 'Selected excerpts inform a draft that stays separate from saved material.', 'DRAFT / REVIEW PENDING', 'Selected source text informs a local-model draft.'],
   ['Check sources and structure', 'Compare quotations and answer structure with the source material.', 'SOURCE CHECK / INSPECT EVIDENCE', 'Compare the draft with its source passage.'],
@@ -25,8 +34,10 @@ document.querySelectorAll('[data-walkthrough]').forEach(demo => {
     demo.querySelector('[data-step-copy]').textContent = frame[1];
     if (type === 'surge') {
       const image = demo.querySelector('[data-step-image]');
-      image.src = frame[2].includes('/')?frame[2]:`assets/project-surge-${frame[2]}.png`;
-      image.alt = `${frame[0]} — captured Surge desktop interface`;
+      const release = document.querySelector('meta[name="portfolio-release"]')?.content;
+      const fallback = `assets/project-surge-${frame[2]}.png${release ? '?v=' + release : ''}`;
+      image.src = frame[2].includes('/') ? frame[2] : fallback;
+      image.alt = frame[1];
     } else {
       demo.querySelector('[data-study-state]').textContent = frame[2];
       demo.querySelector('[data-study-result]').textContent = frame[3];

@@ -15,15 +15,15 @@
       "id": "surge",
       "category": "act",
       "name": "SURGE",
-      "version": "v0.4.4",
+      "version": "v0.4.5",
       "kind": "Anti-cheat research and investigation workflow",
       "outcome": "Turn captured gameplay into replay-backed investigation reports.",
       "info": "surge.html#info",
       "source": "https://github.com/seaboose/Surge",
-      "release": "https://github.com/seaboose/Surge/releases/tag/v0.4.4",
-      "verifiedCommit": "be5dce0fd9774149e93a16c74bb704bd728918eb",
-      "verifiedOn": "2026-11-02",
-      "documentation": "https://github.com/seaboose/Surge/blob/be5dce0fd9774149e93a16c74bb704bd728918eb/docs/survive-workflow.md",
+      "release": "https://github.com/seaboose/Surge/releases/tag/v0.4.5",
+      "verifiedCommit": "8ec22fafec65c70f8150de9044ec51bb5c6dcfb1",
+      "verifiedOn": "2026-11-06",
+      "documentation": "https://github.com/seaboose/Surge/blob/v0.4.5/docs/survive-workflow.md",
       "steps": [
         {
           "label": "Play",
@@ -31,19 +31,20 @@
             "SURGE STARTS",
             "WITH PLAY."
           ],
-          "copy": "Survive, the game inside Surge, uses skillshot-dodging trials to compare human, scripted, and mixed movement.",
+          "copy": "Survive is a dodging game inside Surge. This replay shows movement from a controlled-speed trial.",
           "facts": [
-            "Choose a 60-second trial and seed.",
-            "Move, dash and blink through the arena."
+            "60-second practice round · seed 1337.",
+            "Follow the player's path through the arena."
           ],
           "visual": {
             "type": "demo",
             "engine": "surge",
             "scene": "play",
-            "caption": "Workflow demonstration",
+            "video": "assets/act-play.mp4?v=5f3716b4ad2c",
+            "caption": "Recorded in Surge",
             "cue": "01 / SURVIVE · CONTROLLED ARENA",
-            "screenshot": "assets/project-surge-play.png",
-            "alt": "Surge's Play and record setup with Human, Scripted, Mixed and controlled-speed trial conditions"
+            "screenshot": "assets/project-surge-play.png?v=5f3716b4ad2c",
+            "alt": "Surge round setup with Controlled speed violation selected and seed 1337"
           }
         },
         {
@@ -52,18 +53,19 @@
             "SURGE RECORDS",
             "THE SESSION."
           ],
-          "copy": "Surge captures game-accepted commands and movement samples as the round runs.",
+          "copy": "Watch Surge receive movement records as the saved trial's data passes through its recorder.",
           "facts": [
-            "Keep sequence, time and position together.",
-            "Inspect live while recording continues."
+            "Track game time and received records.",
+            "Check for gaps or parse errors."
           ],
           "visual": {
             "type": "demo",
             "engine": "surge",
             "scene": "capture",
-            "caption": "Workflow demonstration · controlled fixture",
-            "cue": "02 / COMMANDS + POSITION RECORDS",
-            "screenshot": "assets/project-surge-record.png",
+            "video": "assets/act-capture.mp4?v=5f3716b4ad2c",
+            "caption": "Recorded in Surge",
+            "cue": "02 / RECORDING DIAGNOSTICS",
+            "screenshot": "assets/project-surge-record.png?v=5f3716b4ad2c",
             "alt": "Surge's Recording view with game time and recording diagnostics"
           }
         },
@@ -73,19 +75,20 @@
             "SURGE REPLAYS",
             "THE FINDING."
           ],
-          "copy": "Select a flagged movement interval in Surge to inspect its replay and exact source record.",
+          "copy": "At 20.006 seconds, Surge flags a walking interval. The replay links it to records 689–692.",
           "facts": [
-            "Compare Observed with Allowed.",
-            "Keep the selected record and game time aligned."
+            "Surge measured 20.00 cm.",
+            "The allowance was 16.17 cm."
           ],
           "visual": {
             "type": "demo",
             "engine": "surge",
             "scene": "inspect",
-            "caption": "Workflow demonstration · controlled fixture",
+            "video": "assets/act-inspect.mp4?v=5f3716b4ad2c",
+            "caption": "Recorded in Surge",
             "cue": "03 / REVIEW · SELECTED EVIDENCE",
-            "screenshot": "assets/project-surge-review.png",
-            "alt": "Surge's selected evidence panel showing walking displacement, observed and allowed movement, and raw record"
+            "screenshot": "assets/project-surge-review.png?v=5f3716b4ad2c",
+            "alt": "Surge replay at 20.006 seconds with the observed distance, allowance, and source record range"
           }
         },
         {
@@ -94,18 +97,19 @@
             "SURGE CONNECTS",
             "THE EVIDENCE."
           ],
-          "copy": "In Surge’s investigation editor, write observations and attach the selected moment as evidence.",
+          "copy": "The investigator cites the flagged interval as E1 and records how the measured distance supports the finding.",
           "facts": [
-            "Pin the interval as E1.",
-            "Keep analyst notes and recorded facts connected."
+            "Read the observation alongside E1.",
+            "Reopen the cited moment in replay."
           ],
           "visual": {
             "type": "demo",
             "engine": "surge",
             "scene": "explain",
-            "caption": "Workflow demonstration · example narrative",
+            "video": "assets/act-explain.mp4?v=5f3716b4ad2c",
+            "caption": "Recorded in Surge",
             "cue": "04 / OBSERVATIONS + E1 CITATION",
-            "screenshot": "assets/project-surge-explain.png",
+            "screenshot": "assets/project-surge-explain.png?v=5f3716b4ad2c",
             "alt": "Surge's investigation editor with analyst narrative and attached source evidence"
           }
         },
@@ -115,18 +119,19 @@
             "SURGE BUILDS",
             "THE REPORT."
           ],
-          "copy": "Save a revision in Surge, then export your investigation as a self-contained HTML report.",
+          "copy": "Surge exports the saved draft and its cited evidence to a self-contained HTML report.",
           "facts": [
-            "Review saved text and citations.",
-            "Carry evidence snapshots into the report."
+            "Review draft revision 3.",
+            "The report includes the evidence appendix."
           ],
           "visual": {
             "type": "demo",
             "engine": "surge",
             "scene": "export",
-            "caption": "Workflow demonstration · example report",
+            "video": "assets/act-export.mp4?v=5f3716b4ad2c",
+            "caption": "Recorded in Surge",
             "cue": "05 / SAVED REVISION → HTML REPORT",
-            "screenshot": "assets/project-surge-export.png",
+            "screenshot": "assets/project-surge-export.png?v=5f3716b4ad2c",
             "alt": "Surge's report export interface showing report readiness and investigation export"
           }
         }
@@ -177,7 +182,7 @@
             "scene": "find",
             "caption": "Workflow demonstration · regular desktop v0.3.2",
             "cue": "01 / YOUR INTERESTS → SOURCE MATERIAL",
-            "screenshot": "assets/project-studystep-workspace.png",
+            "screenshot": "assets/project-studystep-workspace.png?v=5f3716b4ad2c",
             "screenshotAlt": "StudyStep 0.3.2 regular desktop: What would you like to learn? with file upload and topic search choices"
           }
         },
@@ -274,7 +279,7 @@
             "scene": "practice",
             "caption": "Workflow demonstration · regular desktop v0.3.2",
             "cue": "06 / TRY → REVEAL → SCHEDULE REVIEW",
-            "screenshot": "assets/project-studystep-cards.png",
+            "screenshot": "assets/project-studystep-cards.png?v=5f3716b4ad2c",
             "screenshotAlt": "StudyStep 0.3.2 regular desktop flashcards, showing the reference answer and recall rating controls"
           }
         },
@@ -295,7 +300,7 @@
             "scene": "keep",
             "caption": "Workflow demonstration · regular desktop v0.3.2",
             "cue": "07 / SAVED WORK → FOCUS → RETURN",
-            "screenshot": "assets/project-studystep-collection.png",
+            "screenshot": "assets/project-studystep-collection.png?v=5f3716b4ad2c",
             "screenshotAlt": "StudyStep 0.3.2 Focus collection with Spark, Orbit, and Constellation designs"
           }
         }

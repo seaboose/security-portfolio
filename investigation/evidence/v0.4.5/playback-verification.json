@@ -1,0 +1,101 @@
+{
+  "release": "0.4.5",
+  "recorded_on": "2026-11-06",
+  "archive_sha256": "031f17fb624a4709d30e6bfea53e7d8f2484bcb4fa062e141796bfec968ea884",
+  "footage": "Surge for Windows, captured from the packaged app. The original November 4 trials were replayed from saved data.",
+  "source_recordings": [
+    "73b78e40634a4012962ac1841cabcac0",
+    "2c2d71231dfd45058adaa670435db76f"
+  ],
+  "report": "ff23e0e82c8440e1bd4563bf4020b200",
+  "revision": 3,
+  "export_confirmation": "Verified a fresh HTML file and the saved confirmation in the film at 95 seconds and the Export clip at 5.4 seconds.",
+  "original_recording_and_report_files_matched": 19,
+  "capture_screenshot": "The recorder read the original controlled-speed telemetry stream into an isolated session. All 2,078 records were retained.",
+  "media": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1360,
+        "height": 920,
+        "avg_frame_rate": "30/1",
+        "nb_frames": "3360"
+      }
+    ],
+    "format": {
+      "duration": "112.000000"
+    }
+  },
+  "frames_checked": [
+    5,
+    21,
+    43,
+    65,
+    85,
+    105
+  ],
+  "artifacts": {
+    "act-capture.mp4": {
+      "sha256": "847841eb4f2a656421e162fce423de441763f6fb572d559cea5fdb7cbca7ee48",
+      "bytes": 54631
+    },
+    "act-explain.mp4": {
+      "sha256": "d725cb0b59cbb9c11c0755d88314945c747e5f9b5aaaacb30f6b3c0573753e68",
+      "bytes": 163326
+    },
+    "act-export.mp4": {
+      "sha256": "12ff5a38379895e1afe9d4ac17c4269a30f81d9153ed59dafbb6fb2a437f7e34",
+      "bytes": 56300
+    },
+    "act-inspect.mp4": {
+      "sha256": "856c55446d3dd663e3409377a5d9cb91e611a17fb02724610fc462ae65abb901",
+      "bytes": 152812
+    },
+    "act-play.mp4": {
+      "sha256": "fbb164d5f00fe8c7bad4e77c0be4fa814705f0f7d52e89bc9b014b13a1fd29f4",
+      "bytes": 252030
+    },
+    "demonstration-report.html": {
+      "sha256": "33d493b14343130026a0c018ce9a70a4fd24afb57064dac8f2532d6967194a3b",
+      "bytes": 23830
+    },
+    "explain.png": {
+      "sha256": "25d4b90a1c9f79686eab72a88859f36c70bd0446080f8fef81ddd9f745e9be59",
+      "bytes": 149118
+    },
+    "export.png": {
+      "sha256": "d351c092bea53a7b87633c8d4042d4d6cb0fe9b73a736e888e074394e439bb7a",
+      "bytes": 122025
+    },
+    "landing.png": {
+      "sha256": "70750889f12e55aea4eaa3bcfc1078fc611689c519da33d8bd1b8795773380e6",
+      "bytes": 212107
+    },
+    "play.png": {
+      "sha256": "a41b6ac6fa47c3892fa146f4793db5625e8719a304406bd5e89a5f2eac307fb0",
+      "bytes": 87839
+    },
+    "record.png": {
+      "sha256": "a2dc84fd715d3a3d3e7ae126733b2ef39207f147c9afb2c2360d3944439694e6",
+      "bytes": 92207
+    },
+    "reexport-verification.json": {
+      "sha256": "06397554505aaba63577f2a8dae08724d7b326f81320cec3fb9885f95ce8b941",
+      "bytes": 572
+    },
+    "review.png": {
+      "sha256": "fac45f9ae8a480257ad79d19cdb67e5495c904e24936c3ffc296d53fd85d0251",
+      "bytes": 122027
+    },
+    "surge-demo-poster.jpg": {
+      "sha256": "bec46cf37dadf3cb6f6bc17529badf3391ccf8cdd974ef594abdf6dc36906867",
+      "bytes": 187136
+    },
+    "surge-demo-short.mp4": {
+      "sha256": "b6ffd652bcac580f4338a77bbf89d8cc604c038be740d8ed0482dd6ca495597b",
+      "bytes": 2630160
+    }
+  }
+}

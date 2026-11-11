@@ -19,3 +19,15 @@
 @container workflow-visual (max-height:230px){.flow-artifact p{display:none}.flow-node{padding-top:6px;padding-bottom:6px}.flow-artifact{padding-top:10px;padding-bottom:10px}}
 @media(max-width:700px){.flow-nodes{gap:10px}.flow-node{font-size:6px;padding-left:4px;padding-right:4px}.flow-node>b{font-size:clamp(10px,6cqh,13px);margin-bottom:4px}.flow-artifact{padding-left:14px;padding-right:14px}.flow-artifact h3{font-size:clamp(19px,9cqh,23px)}.flow-state{font-size:5px}.category-manual .tour-visual{min-height:390px}}
 @media(prefers-reduced-motion:reduce){.tour-visual{min-height:540px}@media(max-width:700px){.tour-visual{min-height:390px}}}
+
+.surge-recording {
+  position: relative;
+}
+.surge-recording > video,
+.surge-recording > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

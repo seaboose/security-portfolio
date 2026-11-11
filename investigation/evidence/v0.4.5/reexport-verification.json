@@ -1,0 +1,12 @@
+{
+  "result": "Matching investigation and evidence after excluding export and verification timestamps.",
+  "originalSha256": "158b86bf7029903562aefe89143b31ceb433fdc71d767ffa00eb4ed9913d967b",
+  "reexportSha256": "33d493b14343130026a0c018ce9a70a4fd24afb57064dac8f2532d6967194a3b",
+  "timestamps": {
+    "oldExport": "2026-11-04T18:27:03.934320+00:00",
+    "newExport": "2026-11-07T03:25:32.047903+00:00",
+    "oldVerification": "2026-11-04T18:27:03.929868+00:00",
+    "newVerification": "2026-11-07T03:25:32.042661+00:00"
+  },
+  "status": "Draft revision 3"
+}

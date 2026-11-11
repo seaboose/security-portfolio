@@ -1,7 +1,7 @@
-import {openScreenshot} from './media-viewer.js?v=49dbad3d0926';
-import {mountSurgeDemo} from './surge-demo.js?v=49dbad3d0926';
-import {mountStudyStepDemo} from './studystep-demo.js?v=49dbad3d0926';
-import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js?v=49dbad3d0926';
+import {openScreenshot} from './media-viewer.js?v=5f3716b4ad2c';
+import {mountSurgeDemo} from './surge-demo.js?v=5f3716b4ad2c';
+import {mountStudyStepDemo} from './studystep-demo.js?v=5f3716b4ad2c';
+import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js?v=5f3716b4ad2c';
 const $=selector=>document.querySelector(selector);
 const tour=$('.project-tour'),pin=$('.tour-pin'),picker=$('#project-picker'),controls=$('.step-controls');
 const categoryId=document.body.dataset.category,reduced=matchMedia('(prefers-reduced-motion:reduce)');
@@ -146,7 +146,7 @@ function onWheel(event){
   if(decision.next!==null)jump(decision.next,{viaWheel:true});
 }
 try{
-  const response=await fetch('./project-catalog.json?v=49dbad3d0926');if(!response.ok)throw Error('Project catalog unavailable');
+  const response=await fetch('./project-catalog.json?v=5f3716b4ad2c');if(!response.ok)throw Error('Project catalog unavailable');
   const catalog=await response.json();projects=catalog.projects.filter(item=>item.category===categoryId);
   if(!projects.length||projects.some(item=>!Array.isArray(item.steps)||!item.steps.length))throw Error('Category has no project walkthrough');
   $('[data-category-description]').textContent=catalog.categories[categoryId].description;
