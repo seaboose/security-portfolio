@@ -139,6 +139,161 @@
       "context": "Investigation software I’m building."
     },
     {
+      "id": "insight",
+      "category": "act",
+      "name": "INSIGHT",
+      "version": "v0.1.0-preview.1",
+      "kind": "Read-only binary investigation",
+      "context": "Windows x64 · Read-only investigation",
+      "outcome": "Follow two verified investigations from a question to the bytes behind the decision.",
+      "info": "#insight",
+      "source": "https://github.com/seaboose/Insight",
+      "release": "https://github.com/seaboose/Insight/releases/tag/v0.1.0-preview.1",
+      "verifiedOn": "2026-11-12",
+      "steps": [
+        {
+          "label": "Compare",
+          "heading": [
+            "WHEN IS THE",
+            "COOLDOWN READY?"
+          ],
+          "copy": "Two builds encode the same cooldown decision. Follow the branch in the encoded build to see what happens at the deadline.",
+          "facts": [
+            "Case 1 · Insight only",
+            "Read-only comparison of two supplied builds."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "insight",
+            "caption": "Animated reconstruction from verified evidence",
+            "cue": "COMPARE",
+            "rows": [
+              [
+                "+0E",
+                "0F 47 C1",
+                "cmova eax, ecx"
+              ],
+              [
+                "+1A",
+                "3C C3",
+                "cmp al, C3h"
+              ],
+              [
+                "+1C",
+                "0F 94 C0",
+                "sete al"
+              ]
+            ]
+          }
+        },
+        {
+          "label": "Decide",
+          "heading": [
+            "TEST THE",
+            "BOUNDARY."
+          ],
+          "copy": "At eight seconds the conditional move leaves C3 in place. The equality test returns ready in both builds.",
+          "facts": [
+            "Deadline · 8 seconds",
+            "The decision covers the finite inputs shown."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "insight",
+            "caption": "Animated reconstruction from verified evidence",
+            "cue": "DECIDE",
+            "rows": [
+              [
+                "7.75 s",
+                "0 / 0",
+                "Before deadline"
+              ],
+              [
+                "8.00 s",
+                "1 / 1",
+                "At deadline"
+              ],
+              [
+                "8.25 s",
+                "1 / 1",
+                "After deadline"
+              ]
+            ]
+          }
+        },
+        {
+          "label": "Verify",
+          "heading": [
+            "MATCH THE",
+            "CAPTURE."
+          ],
+          "copy": "Open the bundled Surge observation in Insight and verify its DLL fingerprint. Compare the captured range with the file at the same address.",
+          "facts": [
+            "Case 2 · Surge → Insight → Surge",
+            "Uses a saved observation. No live collector is required."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "insight",
+            "caption": "Animated reconstruction from verified evidence",
+            "cue": "VERIFY",
+            "rows": [
+              [
+                "RVA 1010",
+                "8B C1 83 F0 46",
+                "First five bytes"
+              ],
+              [
+                "RVA 1015",
+                "83 C0 11 C3",
+                "Remaining four bytes"
+              ],
+              [
+                "Read mask",
+                "111111111",
+                "9 of 9 bytes match"
+              ]
+            ]
+          }
+        },
+        {
+          "label": "Report",
+          "heading": [
+            "CITE THE",
+            "FINDING."
+          ],
+          "copy": "Attach the reviewed Insight finding in Surge and follow its citation in the exported offline report. The match establishes what was present at sample time.",
+          "facts": [
+            "A fresh investigation assigns evidence ID E1.",
+            "The sample cannot establish execution history."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "insight",
+            "caption": "Animated reconstruction from verified evidence",
+            "cue": "REPORT",
+            "rows": [
+              [
+                "Insight",
+                "0x1010–1018",
+                "Save the finding"
+              ],
+              [
+                "Surge",
+                "E1",
+                "Attach reviewed revision"
+              ],
+              [
+                "HTML report",
+                "9 / 9",
+                "Check cited coverage"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
       "id": "studystep",
       "category": "learn",
       "name": "STUDYSTEP",

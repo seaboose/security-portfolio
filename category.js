@@ -45,6 +45,22 @@ function visualFor(visual){
   const artifact=element('div','flow-artifact');artifact.append(element('span','flow-artifact-label',visual.artifact.label),element('h3','',visual.artifact.title),element('p','',visual.artifact.body));
   const state=element('div','flow-state');state.append(element('i'),document.createTextNode(visual.artifact.status));root.append(nodes,artifact,state);return root;
 }
+function mountInsightDemo(stage,step){
+  const panel=element('div','insight-preview');
+  panel.append(element('small','',step.visual.cue+' / EVIDENCE REPLAY'));
+  const rows=step.visual.rows.map(([address,value,meaning])=>{
+    const row=element('div','insight-row');
+    row.append(element('span','',address),element('code','',value),element('span','',meaning));
+    panel.append(row);
+    return row;
+  });
+  stage.append(panel);
+  const animations=reduced.matches?[]:rows.map((row,index)=>row.animate(
+    [{backgroundColor:'transparent'},{backgroundColor:'#503020',offset:.15},{backgroundColor:'transparent',offset:.34},{backgroundColor:'transparent'}],
+    {duration:5400,delay:index*1800,iterations:Infinity}
+  ));
+  return {pause(paused){animations.forEach(animation=>paused?animation.pause():animation.play());},dispose(){animations.forEach(animation=>animation.cancel());}};
+}
 function setStep(index,announce=false){
   index=Math.min(project.steps.length-1,Math.max(0,index));
   if(index===active)return;const previous=active;active=index;
@@ -56,7 +72,7 @@ function setStep(index,announce=false){
   $('[data-visual-caption]').textContent=step.visual.caption;$('[data-visual-cue]').textContent=step.visual.cue;
   demo?.dispose();demo=null;
   const stage=$('[data-visual-stage]');stage.replaceChildren();stage.classList.toggle('has-demo',step.visual.type==='demo');
-  if(step.visual.type==='demo')demo=(step.visual.engine==='surge'?mountSurgeDemo:mountStudyStepDemo)(stage,step,{reducedMotion:reduced.matches});else stage.append(visualFor(step.visual));
+  if(step.visual.type==='demo')demo=(step.visual.engine==='insight'?mountInsightDemo:step.visual.engine==='surge'?mountSurgeDemo:mountStudyStepDemo)(stage,step,{reducedMotion:reduced.matches});else stage.append(visualFor(step.visual));
   motionButton.hidden=!demo;motionButton.disabled=reduced.matches;pauseDemo();
   screenshotButton.hidden=!step.visual.screenshot;
   buttons.forEach((button,i)=>{button.setAttribute('aria-pressed',String(i===index));if(i===index)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');});
@@ -110,7 +126,9 @@ function selectProject(next,{reset=true}={}){
   $('[data-project-name]').textContent=project.name;$('[data-project-version]').textContent=project.version;
   $('[data-project-version]').title=`Walkthrough verified ${project.verifiedOn||'with the linked release'}`;
   $('[data-project-version]').textContent=`${project.version} · ${project.verifiedOn?.slice(0,7)||'RELEASE'}`;
-  $('[data-latest-release]').href=`${project.source}/releases/latest`;
+  const insight=project.id==='insight';
+  $('[data-latest-release]').textContent=insight?'GITHUB PRERELEASE ↗':'LATEST RELEASE ↗';
+  $('[data-latest-release]').href=insight?project.release:`${project.source}/releases/latest`;
   $('[data-project-outcome]').textContent=project.outcome;$('[data-info-link]').href=project.info;$('[data-source-link]').href=project.source;
   const context=$('[data-project-context]');if(context)context.textContent=project.context||project.kind||'Software project';
   $('[data-visual-project]').textContent=`${project.name} / SOFTWARE WALKTHROUGH`;tour.setAttribute('aria-label',`${project.name} project walkthrough`);
@@ -146,7 +164,7 @@ function onWheel(event){
   if(decision.next!==null)jump(decision.next,{viaWheel:true});
 }
 try{
-  const response=await fetch('./project-catalog.json?v=5f3716b4ad2c');if(!response.ok)throw Error('Project catalog unavailable');
+  const response=await fetch('./project-catalog.json?v=insight-preview1');if(!response.ok)throw Error('Project catalog unavailable');
   const catalog=await response.json();projects=catalog.projects.filter(item=>item.category===categoryId);
   if(!projects.length||projects.some(item=>!Array.isArray(item.steps)||!item.steps.length))throw Error('Category has no project walkthrough');
   $('[data-category-description]').textContent=catalog.categories[categoryId].description;
