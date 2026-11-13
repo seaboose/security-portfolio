@@ -11,3 +11,34 @@
 @keyframes branch-invitation{0%,68%,100%{transform:translate(0,0);opacity:.7}78%{transform:translate(2px,-2px);opacity:1}88%{transform:translate(0,0);opacity:.7}}
 @media(max-width:700px){.category-header nav .branch-switch{padding:7px 8px;gap:6px;font-size:7px}.branch-switch>span{display:none}}
 @media(prefers-reduced-motion:reduce){.branch-switch,.category-main{transition:none}.branch-switch>i{animation:none}.branch-leaving .category-main{opacity:1;transform:none}}
+.project-tour + .project-tour { margin-top: clamp(32px, 5vh, 64px); }
+.project-ident [data-project-name] { display: inline-flex; align-items: center; gap: 10px; }
+.project-logo { width: 32px; height: 32px; object-fit: contain; flex: 0 0 auto; }
+.project-bridge { color: var(--accent); white-space: nowrap; }
+.project-bridge:hover { text-decoration: underline; text-underline-offset: 3px; }
+.insight-cases {
+  margin: clamp(28px, 5vw, 60px) 0 0;
+  color: var(--text);
+  border-block: 1px solid var(--line);
+  scroll-margin-top: 100px;
+}
+.insight-cases > summary {
+  list-style: none; display: flex; align-items: center; gap: 18px;
+  padding: 18px 2px; cursor: pointer;
+}
+.insight-cases > summary::-webkit-details-marker { display: none; }
+.insight-cases > summary strong { font: 500 15px var(--display); text-transform: uppercase; }
+.insight-cases > summary span { font: 9px var(--mono); color: var(--muted); }
+.insight-cases > summary::after { content: '+'; margin-left: auto; font: 16px var(--mono); }
+.insight-cases[open] > summary::after { content: '−'; }
+.insight-case-content { max-width: 84ch; padding: 0 0 24px; line-height: 1.65; overflow-wrap: anywhere; }
+.insight-case-content article { border-top: 1px solid var(--line); padding-block: 12px; }
+.insight-case-content details { margin-block: 12px; }
+.insight-case-content summary { cursor: pointer; }
+.insight-case-content pre { overflow: auto; border-left: 2px solid var(--line); padding: 12px 16px; }
+.insight-case-content a { text-decoration: underline; text-underline-offset: 3px; }
+.insight-case-content [id] { scroll-margin-top: 100px; }
+@media(max-width:700px) {
+  .project-logo { width: 22px; height: 22px; }
+  .project-ident [data-project-name] { gap: 7px; }
+}

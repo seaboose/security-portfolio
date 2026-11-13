@@ -43,7 +43,7 @@ function playback(){play.textContent=video.ended?'Replay walkthrough':video.paus
 ['timeupdate','seeked','durationchange'].forEach(e=>video.addEventListener(e,update));
 video.addEventListener('loadedmetadata',()=>{pending.hidden=true;play.disabled=false;expand.disabled=false;if(pendingSeek!==null){seek(pendingSeek);pendingSeek=null;}update();});
 video.addEventListener('error',()=>{pending.hidden=false;pending.textContent='Video unavailable. You can still read the report below.';play.disabled=true;expand.disabled=true;});
-fetch('./chapters.json?v=516b48a6caff',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(config=>{
+fetch('./chapters.json?v=1de39eabb239',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(config=>{
  if(!local(config.video)||!Array.isArray(config.chapters)||!config.chapters.length)throw Error();
  let last=-1;config.chapters.forEach(c=>{if(!Number.isFinite(c.start)||c.start<=last||typeof c.title!=='string'||typeof c.copy!=='string')throw Error();last=c.start;});
  if(config.chapters[0].start!==0)throw Error();chapters=config.chapters;

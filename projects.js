@@ -5,7 +5,7 @@ let surgeFrames = [
   ['Explain the evidence', 'Link selected observations to an investigation and its report revisions.', 'explain'],
   ['Export the report', 'Export a reviewable investigation with evidence references and consistency checks.', 'export']
 ];
-fetch('./project-catalog.json?v=516b48a6caff')
+fetch('./project-catalog.json?v=1de39eabb239')
   .then(response => response.ok ? response.json() : null)
   .then(catalog => {
     const project = catalog?.projects.find(item => item.id === 'surge');
