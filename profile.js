@@ -38,7 +38,7 @@ openProfileHash();
 addEventListener('hashchange',openProfileHash);
 const list=document.querySelector('[data-course-list]'),nav=document.querySelector('[data-course-nav]');
 function el(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
-if(list)fetch('./course-catalog.json?v=1de39eabb239').then(r=>{if(!r.ok)throw Error('Course catalog unavailable');return r.json();}).then(data=>{
+if(list)fetch('./course-catalog.json?v=e84e83eaf3e4').then(r=>{if(!r.ok)throw Error('Course catalog unavailable');return r.json();}).then(data=>{
   document.querySelector('.course-standing-date').textContent='STANDING UPDATED / '+new Date(data.updated+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'}).toUpperCase();
   const statuses={'in-progress':'In progress',completed:'Completed',planned:'Planned'},courses=data.terms.flatMap(term=>term.courses),counts=Object.keys(statuses).map(key=>[key,courses.filter(c=>c.status===key).length]);
   document.querySelector('[data-course-summary]').textContent=counts.filter(([,n])=>n).map(([key,n])=>`${n} ${statuses[key].toLowerCase()}`).join(' · ');

@@ -1,7 +1,7 @@
-import {openScreenshot} from './media-viewer.js?v=1de39eabb239';
-import {mountSurgeDemo} from './surge-demo.js?v=1de39eabb239';
-import {mountStudyStepDemo} from './studystep-demo.js?v=1de39eabb239';
-import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js?v=1de39eabb239';
+import {openScreenshot} from './media-viewer.js?v=e84e83eaf3e4';
+import {mountSurgeDemo} from './surge-demo.js?v=e84e83eaf3e4';
+import {mountStudyStepDemo} from './studystep-demo.js?v=e84e83eaf3e4';
+import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js?v=e84e83eaf3e4';
 const $=selector=>document.querySelector(selector);
 const categoryId=document.body.dataset.category;
 const picker=$('#project-picker');
@@ -237,7 +237,7 @@ function onWheel(event){
   if(decision.next!==null)jump(tour,decision.next,{viaWheel:true});
 }
 try{
-  const response=await fetch('./project-catalog.json?v=1de39eabb239');if(!response.ok)throw Error('Project catalog unavailable');
+  const response=await fetch('./project-catalog.json?v=e84e83eaf3e4');if(!response.ok)throw Error('Project catalog unavailable');
   const catalog=await response.json();
   const projects=catalog.projects.filter(item=>item.category===categoryId);
   tours=projects.map(project=>{

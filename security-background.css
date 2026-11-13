@@ -1,3 +1,3 @@
 /* Shared visual environment: subtle detail stays at the edges, behind opaque content. */
-body.security-environment{background-color:#080d16;background-image:url('./assets/security-field.svg?v=1de39eabb239'),radial-gradient(ellipse at 0 28%,#123b4a28,transparent 65%),radial-gradient(ellipse at 100% 65%,#40234f24,transparent 60%);background-position:center top;background-size:cover;background-attachment:fixed}
+body.security-environment{background-color:#080d16;background-image:url('./assets/security-field.svg?v=e84e83eaf3e4'),radial-gradient(ellipse at 0 28%,#123b4a28,transparent 65%),radial-gradient(ellipse at 100% 65%,#40234f24,transparent 60%);background-position:center top;background-size:cover;background-attachment:fixed}
 @media(max-width:700px){body.security-environment{background-size:auto 100svh;background-position:center top}}

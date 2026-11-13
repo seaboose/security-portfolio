@@ -46,10 +46,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "play",
-            "video": "assets/act-play.mp4?v=1de39eabb239",
+            "video": "assets/act-play.mp4?v=e84e83eaf3e4",
             "caption": "Recorded in Surge",
             "cue": "01 / SURVIVE · CONTROLLED ARENA",
-            "screenshot": "assets/project-surge-play.png?v=1de39eabb239",
+            "screenshot": "assets/project-surge-play.png?v=e84e83eaf3e4",
             "alt": "Surge round setup with Controlled speed violation selected and seed 1337"
           }
         },
@@ -68,10 +68,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "capture",
-            "video": "assets/act-capture.mp4?v=1de39eabb239",
+            "video": "assets/act-capture.mp4?v=e84e83eaf3e4",
             "caption": "Recorded in Surge",
             "cue": "02 / RECORDING DIAGNOSTICS",
-            "screenshot": "assets/project-surge-record.png?v=1de39eabb239",
+            "screenshot": "assets/project-surge-record.png?v=e84e83eaf3e4",
             "alt": "Surge's Recording view with game time and recording diagnostics"
           }
         },
@@ -90,10 +90,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "inspect",
-            "video": "assets/act-inspect.mp4?v=1de39eabb239",
+            "video": "assets/act-inspect.mp4?v=e84e83eaf3e4",
             "caption": "Recorded in Surge",
             "cue": "03 / REVIEW · SELECTED EVIDENCE",
-            "screenshot": "assets/project-surge-review.png?v=1de39eabb239",
+            "screenshot": "assets/project-surge-review.png?v=e84e83eaf3e4",
             "alt": "Surge replay at 20.006 seconds with the observed distance, allowance, and source record range"
           }
         },
@@ -112,10 +112,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "explain",
-            "video": "assets/act-explain.mp4?v=1de39eabb239",
+            "video": "assets/act-explain.mp4?v=e84e83eaf3e4",
             "caption": "Recorded in Surge",
             "cue": "04 / OBSERVATIONS + E1 CITATION",
-            "screenshot": "assets/project-surge-explain.png?v=1de39eabb239",
+            "screenshot": "assets/project-surge-explain.png?v=e84e83eaf3e4",
             "alt": "Surge's investigation editor with analyst narrative and attached source evidence"
           }
         },
@@ -134,10 +134,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "export",
-            "video": "assets/act-export.mp4?v=1de39eabb239",
+            "video": "assets/act-export.mp4?v=e84e83eaf3e4",
             "caption": "Recorded in Surge",
             "cue": "05 / SAVED REVISION → HTML REPORT",
-            "screenshot": "assets/project-surge-export.png?v=1de39eabb239",
+            "screenshot": "assets/project-surge-export.png?v=e84e83eaf3e4",
             "alt": "Surge's report export interface showing report readiness and investigation export"
           }
         }
@@ -177,8 +177,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-caller.mp4?v=1de39eabb239",
-            "screenshot": "assets/insight-caller.png?v=1de39eabb239",
+            "video": "assets/insight-caller.mp4?v=e84e83eaf3e4",
+            "screenshot": "assets/insight-caller.png?v=e84e83eaf3e4",
             "alt": "Insight highlights setbe at ready +0x04 in the plain build, alongside its instruction bytes.",
             "caption": "Recorded in Insight",
             "cue": "CALLER"
@@ -198,8 +198,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-boundary.mp4?v=1de39eabb239",
-            "screenshot": "assets/insight-boundary.png?v=1de39eabb239",
+            "video": "assets/insight-boundary.mp4?v=e84e83eaf3e4",
+            "screenshot": "assets/insight-boundary.png?v=e84e83eaf3e4",
             "alt": "Insight highlights sete at +0x1C in the encoded ready routine.",
             "caption": "Recorded in Insight",
             "cue": "BOUNDARY"
@@ -219,8 +219,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-surge-open.mp4?v=1de39eabb239",
-            "screenshot": "assets/insight-surge-open.png?v=1de39eabb239",
+            "video": "assets/insight-surge-open.mp4?v=e84e83eaf3e4",
+            "screenshot": "assets/insight-surge-open.png?v=e84e83eaf3e4",
             "alt": "Surge shows observation.jsonl with the first of six records selected.",
             "caption": "Recorded in Surge",
             "cue": "SURGE / OPEN"
@@ -240,8 +240,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-sample.mp4?v=1de39eabb239",
-            "screenshot": "assets/insight-sample.png?v=1de39eabb239",
+            "video": "assets/insight-sample.mp4?v=e84e83eaf3e4",
+            "screenshot": "assets/insight-sample.png?v=e84e83eaf3e4",
             "alt": "Insight displays the nine captured bytes next to their matching DLL bytes at RVA 0x1010.",
             "caption": "Recorded in Insight",
             "cue": "VERIFY"
@@ -261,8 +261,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-finding.mp4?v=1de39eabb239",
-            "screenshot": "assets/insight-finding.png?v=1de39eabb239",
+            "video": "assets/insight-finding.mp4?v=e84e83eaf3e4",
+            "screenshot": "assets/insight-finding.png?v=e84e83eaf3e4",
             "alt": "Insight previews the approved finding and the cited XOR and ADD instructions.",
             "caption": "Recorded in Insight",
             "cue": "TRACE"
@@ -282,8 +282,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-surge-attach.mp4?v=1de39eabb239",
-            "screenshot": "assets/insight-surge-attach.png?v=1de39eabb239",
+            "video": "assets/insight-surge-attach.mp4?v=e84e83eaf3e4",
+            "screenshot": "assets/insight-surge-attach.png?v=e84e83eaf3e4",
             "alt": "Surge shows the pinned E1 Insight finding and its citation in Observations.",
             "caption": "Recorded in Surge",
             "cue": "SURGE / ATTACH"
@@ -303,8 +303,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-report.mp4?v=1de39eabb239",
-            "screenshot": "assets/insight-report.png?v=1de39eabb239",
+            "video": "assets/insight-report.mp4?v=e84e83eaf3e4",
+            "screenshot": "assets/insight-report.png?v=e84e83eaf3e4",
             "alt": "E1 evidence appendix in the offline Surge report",
             "caption": "Recorded from the exported Surge report",
             "cue": "REPORT"
@@ -361,10 +361,10 @@
             "scene": "find",
             "caption": "StudyStep desktop screens",
             "cue": "01 / CHOOSE MATERIAL",
-            "screenshot": "assets/project-studystep-search.png?v=1de39eabb239",
+            "screenshot": "assets/project-studystep-search.png?v=e84e83eaf3e4",
             "screenshotAlt": "StudyStep’s Wikipedia source preview for Domain Name System.",
             "before": {
-              "screenshot": "assets/project-studystep-workspace.png?v=1de39eabb239"
+              "screenshot": "assets/project-studystep-workspace.png?v=e84e83eaf3e4"
             }
           }
         },
@@ -385,10 +385,10 @@
             "scene": "build",
             "caption": "StudyStep desktop screens",
             "cue": "02 / IMPORT → STUDY GUIDE",
-            "screenshot": "assets/project-studystep-guide.png?v=1de39eabb239",
+            "screenshot": "assets/project-studystep-guide.png?v=e84e83eaf3e4",
             "screenshotAlt": "The Networking basics study guide with key points and a DNS recall question.",
             "before": {
-              "screenshot": "assets/project-studystep-import.png?v=1de39eabb239"
+              "screenshot": "assets/project-studystep-import.png?v=e84e83eaf3e4"
             }
           }
         },
@@ -408,10 +408,10 @@
             "scene": "practice",
             "caption": "StudyStep desktop screens",
             "cue": "03 / FLASHCARD → REFERENCE ANSWER",
-            "screenshot": "assets/project-studystep-cards.png?v=1de39eabb239",
+            "screenshot": "assets/project-studystep-cards.png?v=e84e83eaf3e4",
             "screenshotAlt": "The DNS flashcard reveals the reference answer and three recall ratings.",
             "before": {
-              "screenshot": "assets/project-studystep-card-prompt.png?v=1de39eabb239"
+              "screenshot": "assets/project-studystep-card-prompt.png?v=e84e83eaf3e4"
             }
           }
         },
@@ -432,10 +432,10 @@
             "scene": "adapt",
             "caption": "StudyStep desktop screens",
             "cue": "04 / PRACTICE → NEXT ACTIVITY",
-            "screenshot": "assets/project-studystep-activity.png?v=1de39eabb239",
+            "screenshot": "assets/project-studystep-activity.png?v=e84e83eaf3e4",
             "screenshotAlt": "The Next activity panel shows the suggested task and editable topic assessment.",
             "before": {
-              "screenshot": "assets/project-studystep-practice.png?v=1de39eabb239"
+              "screenshot": "assets/project-studystep-practice.png?v=e84e83eaf3e4"
             }
           }
         },
@@ -456,10 +456,10 @@
             "scene": "follow",
             "caption": "StudyStep desktop screens",
             "cue": "05 / FOLLOW → REVIEW CHANGES",
-            "screenshot": "assets/project-studystep-source-update.png?v=1de39eabb239",
+            "screenshot": "assets/project-studystep-source-update.png?v=e84e83eaf3e4",
             "screenshotAlt": "A weekly check of Domain Name System shows newly added wording and the Mark reviewed button.",
             "before": {
-              "screenshot": "assets/project-studystep-source-closed.png?v=1de39eabb239"
+              "screenshot": "assets/project-studystep-source-closed.png?v=e84e83eaf3e4"
             }
           }
         },
@@ -480,10 +480,10 @@
             "scene": "read",
             "caption": "StudyStep desktop screens",
             "cue": "06 / RELATED TOPIC → READING LIST",
-            "screenshot": "assets/project-studystep-reading-list.png?v=1de39eabb239",
+            "screenshot": "assets/project-studystep-reading-list.png?v=e84e83eaf3e4",
             "screenshotAlt": "The reading list shows Multicast DNS, its connection to the study topic, and a link to the article.",
             "before": {
-              "screenshot": "assets/project-studystep-reading-suggestion.png?v=1de39eabb239"
+              "screenshot": "assets/project-studystep-reading-suggestion.png?v=e84e83eaf3e4"
             }
           }
         }
