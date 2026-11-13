@@ -152,73 +152,45 @@
       "verifiedOn": "2026-11-12",
       "steps": [
         {
-          "label": "Compare",
+          "label": "Caller",
           "heading": [
-            "WHEN IS THE",
-            "COOLDOWN READY?"
+            "FOLLOW THE",
+            "EQUALITY CALL."
           ],
-          "copy": "Two builds encode the same cooldown decision. Follow the branch in the encoded build to see what happens at the deadline.",
+          "copy": "Select the plain caller at +0x5D, then follow ready. The highlighted bytes and instruction detail move together as the selection changes.",
           "facts": [
             "Case 1 · Insight only",
-            "Read-only comparison of two supplied builds."
+            "At +0x04, setbe includes equality."
           ],
           "visual": {
             "type": "demo",
-            "engine": "insight",
-            "caption": "Animated reconstruction from verified evidence",
-            "cue": "COMPARE",
-            "rows": [
-              [
-                "+0E",
-                "0F 47 C1",
-                "cmova eax, ecx"
-              ],
-              [
-                "+1A",
-                "3C C3",
-                "cmp al, C3h"
-              ],
-              [
-                "+1C",
-                "0F 94 C0",
-                "sete al"
-              ]
-            ]
+            "engine": "recording",
+            "video": "assets/insight-caller.mp4",
+            "screenshot": "assets/insight-caller.png",
+            "alt": "Plain ready routine with the compare instruction and its bytes selected",
+            "caption": "Recorded in Insight",
+            "cue": "CALLER"
           }
         },
         {
-          "label": "Decide",
+          "label": "Boundary",
           "heading": [
-            "TEST THE",
-            "BOUNDARY."
+            "CHECK THE",
+            "ENCODED BUILD."
           ],
-          "copy": "At eight seconds the conditional move leaves C3 in place. The equality test returns ready in both builds.",
+          "copy": "Follow the conditional move, compare and equality test. At the eight-second deadline the conditional move preserves C3, so the encoded build also returns ready.",
           "facts": [
-            "Deadline · 8 seconds",
-            "The decision covers the finite inputs shown."
+            "+0x0E → +0x1A → +0x1C",
+            "Both builds: 7.75 s → 0 · 8.00 s → 1 · 8.25 s → 1."
           ],
           "visual": {
             "type": "demo",
-            "engine": "insight",
-            "caption": "Animated reconstruction from verified evidence",
-            "cue": "DECIDE",
-            "rows": [
-              [
-                "7.75 s",
-                "0 / 0",
-                "Before deadline"
-              ],
-              [
-                "8.00 s",
-                "1 / 1",
-                "At deadline"
-              ],
-              [
-                "8.25 s",
-                "1 / 1",
-                "After deadline"
-              ]
-            ]
+            "engine": "recording",
+            "video": "assets/insight-boundary.mp4",
+            "screenshot": "assets/insight-boundary.png",
+            "alt": "Encoded ready routine with the compare against C3 selected",
+            "caption": "Recorded in Insight",
+            "cue": "BOUNDARY"
           }
         },
         {
@@ -227,68 +199,61 @@
             "MATCH THE",
             "CAPTURE."
           ],
-          "copy": "Open the bundled Surge observation in Insight and verify its DLL fingerprint. Compare the captured range with the file at the same address.",
+          "copy": "Open the saved Surge observation in Insight. Verify the supplied DLL to reveal its file bytes alongside the nine captured memory bytes.",
           "facts": [
             "Case 2 · Surge → Insight → Surge",
-            "Uses a saved observation. No live collector is required."
+            "LabCodeProbe · RVA 0x1010 · 9/9 readable bytes."
           ],
           "visual": {
             "type": "demo",
-            "engine": "insight",
-            "caption": "Animated reconstruction from verified evidence",
-            "cue": "VERIFY",
-            "rows": [
-              [
-                "RVA 1010",
-                "8B C1 83 F0 46",
-                "First five bytes"
-              ],
-              [
-                "RVA 1015",
-                "83 C0 11 C3",
-                "Remaining four bytes"
-              ],
-              [
-                "Read mask",
-                "111111111",
-                "9 of 9 bytes match"
-              ]
-            ]
+            "engine": "recording",
+            "video": "assets/insight-sample.mp4",
+            "screenshot": "assets/insight-sample.png",
+            "alt": "Insight observation window showing identical file and memory bytes",
+            "caption": "Recorded in Insight",
+            "cue": "VERIFY"
+          }
+        },
+        {
+          "label": "Trace",
+          "heading": [
+            "TRACE THE",
+            "NINE BYTES."
+          ],
+          "copy": "Inspect the copy, XOR and addition in Insight. Each selection highlights its exact bytes. Save an analyst note that cites the arithmetic instructions.",
+          "facts": [
+            "XOR at 0x1012 · ADD at 0x1015",
+            "The match applies to this sample and address range."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "recording",
+            "video": "assets/insight-finding.mp4",
+            "screenshot": "assets/insight-finding.png",
+            "alt": "LabCodeProbe with the XOR instruction selected in the linked listing and byte view",
+            "caption": "Recorded in Insight",
+            "cue": "TRACE"
           }
         },
         {
           "label": "Report",
           "heading": [
-            "CITE THE",
-            "FINDING."
+            "FOLLOW THE",
+            "CITATION."
           ],
-          "copy": "Attach the reviewed Insight finding in Surge and follow its citation in the exported offline report. The match establishes what was present at sample time.",
+          "copy": "In the exported Surge report, follow the observation’s E1 citation to the reviewed Insight finding and its supporting evidence.",
           "facts": [
-            "A fresh investigation assigns evidence ID E1.",
-            "The sample cannot establish execution history."
+            "Recorded from the verified offline report.",
+            "The sample establishes byte agreement at capture time. Execution history remains unknown."
           ],
           "visual": {
             "type": "demo",
-            "engine": "insight",
-            "caption": "Animated reconstruction from verified evidence",
-            "cue": "REPORT",
-            "rows": [
-              [
-                "Insight",
-                "0x1010–1018",
-                "Save the finding"
-              ],
-              [
-                "Surge",
-                "E1",
-                "Attach reviewed revision"
-              ],
-              [
-                "HTML report",
-                "9 / 9",
-                "Check cited coverage"
-              ]
-            ]
+            "engine": "recording",
+            "video": "assets/insight-report.mp4",
+            "screenshot": "assets/insight-report.png",
+            "alt": "E1 evidence appendix in the offline Surge report",
+            "caption": "Recorded from the exported Surge report",
+            "cue": "REPORT"
           }
         }
       ]
