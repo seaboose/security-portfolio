@@ -5,7 +5,7 @@ let surgeFrames = [
   ['Explain the evidence', 'Link selected observations to an investigation and its report revisions.', 'explain'],
   ['Export the report', 'Export a reviewable investigation with evidence references and consistency checks.', 'export']
 ];
-fetch('./project-catalog.json?v=5f3716b4ad2c')
+fetch('./project-catalog.json?v=516b48a6caff')
   .then(response => response.ok ? response.json() : null)
   .then(catalog => {
     const project = catalog?.projects.find(item => item.id === 'surge');
@@ -15,33 +15,18 @@ fetch('./project-catalog.json?v=5f3716b4ad2c')
       return [surgeFrames[index]?.[0] || step.label, description, step.visual.screenshot];
     });
   }).catch(() => {});
-const studyFrames = [
-  ['Draft from selected material', 'Selected excerpts inform a draft that stays separate from saved material.', 'DRAFT / REVIEW PENDING', 'Selected source text informs a local-model draft.'],
-  ['Check sources and structure', 'Compare quotations and answer structure with the source material.', 'SOURCE CHECK / INSPECT EVIDENCE', 'Compare the draft with its source passage.'],
-  ['Review the draft', 'Request another model review before presenting the draft for approval.', 'MODEL REVIEW / FEEDBACK', 'Model review provides feedback on the draft.'],
-  ['Bound the revision', 'Allow at most one revision, then present the result for human review.', 'REVISION BUDGET / AT MOST ONE', 'One revision keeps the generation workflow bounded.'],
-  ['Keep the decision human', 'Require human approval before replacing saved material.', 'HUMAN APPROVAL / REQUIRED', 'Review the evidence, then decide whether to save.']
-];
-
-document.querySelectorAll('[data-walkthrough]').forEach(demo => {
+document.querySelectorAll('[data-walkthrough="surge"]').forEach(demo => {
   const buttons = [...demo.querySelectorAll('[data-step]')];
-  const type = demo.dataset.walkthrough;
   function setStep(index) {
     buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
-    const frames = type === 'surge' ? surgeFrames : studyFrames;
-    const frame = frames[index];
+    const frame = surgeFrames[index];
     demo.querySelector('[data-step-title]').textContent = frame[0];
     demo.querySelector('[data-step-copy]').textContent = frame[1];
-    if (type === 'surge') {
-      const image = demo.querySelector('[data-step-image]');
-      const release = document.querySelector('meta[name="portfolio-release"]')?.content;
-      const fallback = `assets/project-surge-${frame[2]}.png${release ? '?v=' + release : ''}`;
-      image.src = frame[2].includes('/') ? frame[2] : fallback;
-      image.alt = frame[1];
-    } else {
-      demo.querySelector('[data-study-state]').textContent = frame[2];
-      demo.querySelector('[data-study-result]').textContent = frame[3];
-    }
+    const image = demo.querySelector('[data-step-image]');
+    const release = document.querySelector('meta[name="portfolio-release"]')?.content;
+    const fallback = `assets/project-surge-${frame[2]}.png${release ? '?v=' + release : ''}`;
+    image.src = frame[2].includes('/') ? frame[2] : fallback;
+    image.alt = frame[1];
   }
   buttons.forEach((button, index) => button.addEventListener('click', () => setStep(index)));
 });

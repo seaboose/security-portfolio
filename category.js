@@ -1,7 +1,7 @@
-import {openScreenshot} from './media-viewer.js?v=5f3716b4ad2c';
-import {mountSurgeDemo} from './surge-demo.js?v=5f3716b4ad2c';
-import {mountStudyStepDemo} from './studystep-demo.js?v=5f3716b4ad2c';
-import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js?v=5f3716b4ad2c';
+import {openScreenshot} from './media-viewer.js?v=516b48a6caff';
+import {mountSurgeDemo} from './surge-demo.js?v=516b48a6caff';
+import {mountStudyStepDemo} from './studystep-demo.js?v=516b48a6caff';
+import {createWheelStepGate,wheelPixels} from './scroll-step-gate.js?v=516b48a6caff';
 const $=selector=>document.querySelector(selector);
 const tour=$('.project-tour'),pin=$('.tour-pin'),picker=$('#project-picker'),controls=$('.step-controls');
 const categoryId=document.body.dataset.category,reduced=matchMedia('(prefers-reduced-motion:reduce)');
@@ -13,7 +13,7 @@ let stepAnimations=[],branchNavigating=false,scrollDestination=null;
 const motionButton=$('[data-motion-toggle]'),screenshotButton=$('[data-open-screenshot]');
 function pauseDemo(){demo?.pause(motionPaused||reduced.matches||!inView||document.hidden||mediaOpen);}
 motionButton.addEventListener('click',()=>{motionPaused=!motionPaused;motionButton.setAttribute('aria-pressed',String(motionPaused));motionButton.textContent=motionPaused?'PLAY MOTION':'PAUSE MOTION';pauseDemo();});
-screenshotButton.addEventListener('click',()=>{const visual=project.steps[active].visual;openScreenshot({src:visual.screenshot,alt:visual.screenshotAlt||visual.alt||`${project.name} application screenshot`,caption:`${project.name} ${project.version} · Recorded application screen`},screenshotButton);});
+screenshotButton.addEventListener('click',()=>{const visual=project.steps[active].visual;openScreenshot({src:visual.screenshot,alt:visual.screenshotAlt||visual.alt||`${project.name} application screenshot`,caption:`${project.name} ${project.previewVersion || project.version} · Recorded application screen`},screenshotButton);});
 addEventListener('portfolio:media',event=>{mediaOpen=event.detail.open;scrollDestination=null;wheelGate.reset();pauseDemo();});
 document.addEventListener('visibilitychange',pauseDemo);
 new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;pauseDemo();},{threshold:.05}).observe(pin);
@@ -107,12 +107,16 @@ function jump(index,{focus=false,updateHistory=true,viaWheel=false,smooth=true}=
 }
 function selectProject(next,{reset=true}={}){
   project=next;active=-1;progress=0;picker.value=project.id;
-  $('[data-project-name]').textContent=project.name;$('[data-project-version]').textContent=project.version;
+  $('[data-project-name]').textContent=project.name;
   $('[data-project-version]').title=`Walkthrough verified ${project.verifiedOn||'with the linked release'}`;
-  $('[data-project-version]').textContent=`${project.version} · ${project.verifiedOn?.slice(0,7)||'RELEASE'}`;
+  $('[data-project-version]').textContent=`${project.previewVersion || project.version} · ${project.verifiedOn?.slice(0,7)||'RELEASE'}`;
   const insight=project.id==='insight';
   $('[data-latest-release]').textContent=insight?'GITHUB PRERELEASE ↗':'LATEST RELEASE ↗';
   $('[data-latest-release]').href=insight?project.release:`${project.source}/releases/latest`;
+  if(project.previewVersion){
+    $('[data-latest-release]').textContent=`DOWNLOAD ${project.version} ↗`;
+    $('[data-latest-release]').href=project.release;
+  }
   $('[data-project-outcome]').textContent=project.outcome;$('[data-info-link]').href=project.info;$('[data-source-link]').href=project.source;
   const context=$('[data-project-context]');if(context)context.textContent=project.context||project.kind||'Software project';
   $('[data-visual-project]').textContent=`${project.name} / SOFTWARE WALKTHROUGH`;tour.setAttribute('aria-label',`${project.name} project walkthrough`);
@@ -148,7 +152,7 @@ function onWheel(event){
   if(decision.next!==null)jump(decision.next,{viaWheel:true});
 }
 try{
-  const response=await fetch('./project-catalog.json?v=insight-handoff');if(!response.ok)throw Error('Project catalog unavailable');
+  const response=await fetch('./project-catalog.json?v=516b48a6caff');if(!response.ok)throw Error('Project catalog unavailable');
   const catalog=await response.json();projects=catalog.projects.filter(item=>item.category===categoryId);
   if(!projects.length||projects.some(item=>!Array.isArray(item.steps)||!item.steps.length))throw Error('Category has no project walkthrough');
   $('[data-category-description]').textContent=catalog.categories[categoryId].description;

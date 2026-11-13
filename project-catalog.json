@@ -40,10 +40,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "play",
-            "video": "assets/act-play.mp4?v=5f3716b4ad2c",
+            "video": "assets/act-play.mp4?v=516b48a6caff",
             "caption": "Recorded in Surge",
             "cue": "01 / SURVIVE · CONTROLLED ARENA",
-            "screenshot": "assets/project-surge-play.png?v=5f3716b4ad2c",
+            "screenshot": "assets/project-surge-play.png?v=516b48a6caff",
             "alt": "Surge round setup with Controlled speed violation selected and seed 1337"
           }
         },
@@ -62,10 +62,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "capture",
-            "video": "assets/act-capture.mp4?v=5f3716b4ad2c",
+            "video": "assets/act-capture.mp4?v=516b48a6caff",
             "caption": "Recorded in Surge",
             "cue": "02 / RECORDING DIAGNOSTICS",
-            "screenshot": "assets/project-surge-record.png?v=5f3716b4ad2c",
+            "screenshot": "assets/project-surge-record.png?v=516b48a6caff",
             "alt": "Surge's Recording view with game time and recording diagnostics"
           }
         },
@@ -84,10 +84,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "inspect",
-            "video": "assets/act-inspect.mp4?v=5f3716b4ad2c",
+            "video": "assets/act-inspect.mp4?v=516b48a6caff",
             "caption": "Recorded in Surge",
             "cue": "03 / REVIEW · SELECTED EVIDENCE",
-            "screenshot": "assets/project-surge-review.png?v=5f3716b4ad2c",
+            "screenshot": "assets/project-surge-review.png?v=516b48a6caff",
             "alt": "Surge replay at 20.006 seconds with the observed distance, allowance, and source record range"
           }
         },
@@ -106,10 +106,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "explain",
-            "video": "assets/act-explain.mp4?v=5f3716b4ad2c",
+            "video": "assets/act-explain.mp4?v=516b48a6caff",
             "caption": "Recorded in Surge",
             "cue": "04 / OBSERVATIONS + E1 CITATION",
-            "screenshot": "assets/project-surge-explain.png?v=5f3716b4ad2c",
+            "screenshot": "assets/project-surge-explain.png?v=516b48a6caff",
             "alt": "Surge's investigation editor with analyst narrative and attached source evidence"
           }
         },
@@ -128,10 +128,10 @@
             "type": "demo",
             "engine": "surge",
             "scene": "export",
-            "video": "assets/act-export.mp4?v=5f3716b4ad2c",
+            "video": "assets/act-export.mp4?v=516b48a6caff",
             "caption": "Recorded in Surge",
             "cue": "05 / SAVED REVISION → HTML REPORT",
-            "screenshot": "assets/project-surge-export.png?v=5f3716b4ad2c",
+            "screenshot": "assets/project-surge-export.png?v=516b48a6caff",
             "alt": "Surge's report export interface showing report readiness and investigation export"
           }
         }
@@ -165,8 +165,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-caller.mp4",
-            "screenshot": "assets/insight-caller.png",
+            "video": "assets/insight-caller.mp4?v=516b48a6caff",
+            "screenshot": "assets/insight-caller.png?v=516b48a6caff",
             "alt": "Plain ready routine with the compare instruction and its bytes selected",
             "caption": "Recorded in Insight",
             "cue": "CALLER"
@@ -186,8 +186,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-boundary.mp4",
-            "screenshot": "assets/insight-boundary.png",
+            "video": "assets/insight-boundary.mp4?v=516b48a6caff",
+            "screenshot": "assets/insight-boundary.png?v=516b48a6caff",
             "alt": "Encoded ready routine with the compare against C3 selected",
             "caption": "Recorded in Insight",
             "cue": "BOUNDARY"
@@ -207,8 +207,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-surge-open.mp4",
-            "screenshot": "assets/insight-surge-open.png",
+            "video": "assets/insight-surge-open.mp4?v=516b48a6caff",
+            "screenshot": "assets/insight-surge-open.png?v=516b48a6caff",
             "alt": "Surge shows observation.jsonl with the first of six records selected.",
             "caption": "Recorded in Surge",
             "cue": "SURGE / OPEN"
@@ -228,8 +228,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-sample.mp4",
-            "screenshot": "assets/insight-sample.png",
+            "video": "assets/insight-sample.mp4?v=516b48a6caff",
+            "screenshot": "assets/insight-sample.png?v=516b48a6caff",
             "alt": "Insight observation window showing identical file and memory bytes",
             "caption": "Recorded in Insight",
             "cue": "VERIFY"
@@ -249,8 +249,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-finding.mp4",
-            "screenshot": "assets/insight-finding.png",
+            "video": "assets/insight-finding.mp4?v=516b48a6caff",
+            "screenshot": "assets/insight-finding.png?v=516b48a6caff",
             "alt": "LabCodeProbe with the XOR instruction selected in the linked listing and byte view",
             "caption": "Recorded in Insight",
             "cue": "TRACE"
@@ -270,8 +270,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-surge-attach.mp4",
-            "screenshot": "assets/insight-surge-attach.png",
+            "video": "assets/insight-surge-attach.mp4?v=516b48a6caff",
+            "screenshot": "assets/insight-surge-attach.png?v=516b48a6caff",
             "alt": "Surge shows the pinned E1 Insight finding and its citation in Observations.",
             "caption": "Recorded in Surge",
             "cue": "SURGE / ATTACH"
@@ -291,8 +291,8 @@
           "visual": {
             "type": "demo",
             "engine": "recording",
-            "video": "assets/insight-report.mp4",
-            "screenshot": "assets/insight-report.png",
+            "video": "assets/insight-report.mp4?v=516b48a6caff",
+            "screenshot": "assets/insight-report.png?v=516b48a6caff",
             "alt": "E1 evidence appendix in the offline Surge report",
             "caption": "Recorded from the exported Surge report",
             "cue": "REPORT"
@@ -305,173 +305,177 @@
       "category": "learn",
       "name": "STUDYSTEP",
       "version": "v0.3.2",
-      "kind": "Personal learning workspace",
-      "outcome": "Turn topics and source material into reviewed study sets, then build a routine with practice and focus.",
+      "kind": "Local learning workspace",
+      "outcome": "Turn readings into practice, then use the results to choose what to study next.",
       "info": "studystep.html#info",
       "source": "https://github.com/seaboose/StudyStep",
       "verified": {
-        "date": "2026-11-02",
-        "edition": "Regular desktop product",
-        "version": "0.3.2",
-        "packageBundle": "index-Bq9uu-Hj.js",
-        "packageBundleSha256": "86e00bb99f0b15b892214fe0bbcfee198ee084c2267986547d5b471f92ada19f",
+        "date": "2026-11-12",
+        "edition": "Card Index consumer desktop candidate",
+        "version": "0.4.0",
+        "packageBundle": "index-B6RBzvsE.js",
+        "packageBundleSha256": "d5a5afcb2f3bffd9af7476a04ab240753256b7e7f345e2e83ef1b31e51595ce2",
         "uiPaths": [
           "local/TopicSearch.tsx",
-          "local/SectionPicker.tsx",
           "local/CardReview.tsx",
           "local/Flashcards.tsx",
-          "local/LocalApp.tsx",
-          "local/tools.tsx",
-          "scripts/local-generation.mjs",
-          "examples/studystep-example.json"
+          "local/PracticeNext.tsx",
+          "local/FollowedSources.tsx",
+          "local/RelatedTopics.tsx",
+          "local/card-index.css"
         ]
       },
       "steps": [
         {
           "label": "Find",
           "heading": [
-            "START A SET",
-            "IN STUDYSTEP."
+            "START WITH",
+            "A SOURCE."
           ],
-          "copy": "StudyStep starts with what you want to learn. Search a topic or bring your own material.",
+          "copy": "Search English Wikipedia for a topic, paste your notes, or bring a reading into StudyStep.",
           "facts": [
-            "Preview an English Wikipedia overview.",
-            "Or import PDF, DOCX, TXT or Markdown."
+            "Preview an overview before using it.",
+            "Import PDF, DOCX, TXT, or Markdown."
           ],
           "visual": {
             "type": "demo",
             "engine": "studystep",
             "scene": "find",
-            "caption": "Workflow demonstration · regular desktop v0.3.2",
-            "cue": "01 / YOUR INTERESTS → SOURCE MATERIAL",
-            "screenshot": "assets/project-studystep-workspace.png?v=5f3716b4ad2c",
-            "screenshotAlt": "StudyStep 0.3.2 regular desktop: What would you like to learn? with file upload and topic search choices"
+            "caption": "StudyStep desktop screens",
+            "cue": "01 / CHOOSE MATERIAL",
+            "screenshot": "assets/project-studystep-search.png?v=516b48a6caff",
+            "screenshotAlt": "StudyStep’s Wikipedia source preview for Domain Name System.",
+            "before": {
+              "screenshot": "assets/project-studystep-workspace.png?v=516b48a6caff"
+            }
           }
         },
         {
-          "label": "Select",
+          "label": "Build",
           "heading": [
-            "STUDYSTEP KEEPS",
-            "THE SOURCE CLOSE."
+            "OPEN A",
+            "STUDY SET."
           ],
-          "copy": "Inspect the material and choose the passages that will inform your study set.",
+          "copy": "The included networking set turns a DNS topic into key points and a recall question.",
           "facts": [
-            "Read the original overview or your notes.",
-            "Select sections before generation."
+            "Import a set or build your own.",
+            "Optional local AI drafts material for your review."
           ],
           "visual": {
             "type": "demo",
             "engine": "studystep",
-            "scene": "select",
-            "caption": "Workflow demonstration · regular desktop v0.3.2",
-            "cue": "02 / READ THE SOURCE → CHOOSE SECTIONS"
-          }
-        },
-        {
-          "label": "Draft",
-          "heading": [
-            "STUDYSTEP BUILDS",
-            "A STUDY DRAFT."
-          ],
-          "copy": "Optional local AI turns selected excerpts into a guide, flashcards, and practice questions.",
-          "facts": [
-            "Use a downloaded Ollama model.",
-            "Keep the draft open for review."
-          ],
-          "visual": {
-            "type": "demo",
-            "engine": "studystep",
-            "scene": "draft",
-            "caption": "Workflow demonstration · regular desktop v0.3.2",
-            "cue": "03 / SELECTED EXCERPTS → LOCAL AI DRAFT"
-          }
-        },
-        {
-          "label": "Check",
-          "heading": [
-            "STUDYSTEP CHECKS",
-            "THE EVIDENCE."
-          ],
-          "copy": "Quotation and structure checks precede a separate model review of the generated material.",
-          "facts": [
-            "Connect answers to cited passages.",
-            "Revise once when checks need repairs."
-          ],
-          "visual": {
-            "type": "demo",
-            "engine": "studystep",
-            "scene": "check",
-            "caption": "Workflow demonstration · regular desktop v0.3.2",
-            "cue": "04 / SOURCE CHECKS → MODEL REVIEW"
-          }
-        },
-        {
-          "label": "Review",
-          "heading": [
-            "YOU REVIEW.",
-            "STUDYSTEP SAVES."
-          ],
-          "copy": "Compare each card with its source, edit when needed, and approve the cards you want to keep.",
-          "facts": [
-            "Keep & next reviews each card.",
-            "Save study set after approval."
-          ],
-          "visual": {
-            "type": "demo",
-            "engine": "studystep",
-            "scene": "review",
-            "caption": "Workflow demonstration · regular desktop v0.3.2",
-            "cue": "05 / REVIEW CARDS → KEEP → SAVE"
+            "scene": "build",
+            "caption": "StudyStep desktop screens",
+            "cue": "02 / IMPORT → STUDY GUIDE",
+            "screenshot": "assets/project-studystep-guide.png?v=516b48a6caff",
+            "screenshotAlt": "The Networking basics study guide with key points and a DNS recall question.",
+            "before": {
+              "screenshot": "assets/project-studystep-import.png?v=516b48a6caff"
+            }
           }
         },
         {
           "label": "Practice",
           "heading": [
-            "PRACTICE WITH",
-            "STUDYSTEP."
+            "TRY IT",
+            "FROM MEMORY."
           ],
-          "copy": "Use flashcards, multiple-choice questions, and recall practice to revisit the material.",
+          "copy": "What does DNS translate? Try your answer, reveal the reference, then rate how easily you recalled it.",
           "facts": [
-            "Try an answer before revealing it.",
-            "Rate recall to schedule another review."
+            "Your rating schedules the next review."
           ],
           "visual": {
             "type": "demo",
             "engine": "studystep",
             "scene": "practice",
-            "caption": "Workflow demonstration · regular desktop v0.3.2",
-            "cue": "06 / TRY → REVEAL → SCHEDULE REVIEW",
-            "screenshot": "assets/project-studystep-cards.png?v=5f3716b4ad2c",
-            "screenshotAlt": "StudyStep 0.3.2 regular desktop flashcards, showing the reference answer and recall rating controls"
+            "caption": "StudyStep desktop screens",
+            "cue": "03 / FLASHCARD → REFERENCE ANSWER",
+            "screenshot": "assets/project-studystep-cards.png?v=516b48a6caff",
+            "screenshotAlt": "The DNS flashcard reveals the reference answer and three recall ratings.",
+            "before": {
+              "screenshot": "assets/project-studystep-card-prompt.png?v=516b48a6caff"
+            }
           }
         },
         {
-          "label": "Return",
+          "label": "Adapt",
           "heading": [
-            "MAKE LEARNING",
-            "A ROUTINE."
+            "CHOOSE WHAT",
+            "COMES NEXT."
           ],
-          "copy": "Your set and progress stay on your computer. A focus timer, collection, and journal help you return.",
+          "copy": "After a practice round, StudyStep suggests a topic to revisit. Here, marking DNS as “Needs practice” brings up a guided explanation.",
           "facts": [
-            "Back up or export your study set.",
-            "Collect a design for time spent studying."
+            "Edit a topic’s assessment or use the results.",
+            "Review an explanation, recall, or explain a wrong choice."
           ],
           "visual": {
             "type": "demo",
             "engine": "studystep",
-            "scene": "keep",
-            "caption": "Workflow demonstration · regular desktop v0.3.2",
-            "cue": "07 / SAVED WORK → FOCUS → RETURN",
-            "screenshot": "assets/project-studystep-collection.png?v=5f3716b4ad2c",
-            "screenshotAlt": "StudyStep 0.3.2 Focus collection with Spark, Orbit, and Constellation designs"
+            "scene": "adapt",
+            "caption": "StudyStep desktop screens",
+            "cue": "04 / PRACTICE → NEXT ACTIVITY",
+            "screenshot": "assets/project-studystep-activity.png?v=516b48a6caff",
+            "screenshotAlt": "The Next activity panel shows the suggested task and editable topic assessment.",
+            "before": {
+              "screenshot": "assets/project-studystep-practice.png?v=516b48a6caff"
+            }
+          }
+        },
+        {
+          "label": "Follow",
+          "heading": [
+            "REVIEW SOURCE",
+            "CHANGES."
+          ],
+          "copy": "Follow a Wikipedia overview. Open a change, read what was added or removed, and mark it reviewed.",
+          "facts": [
+            "Choose daily, weekly, or 30-day checks.",
+            "StudyStep checks while open and catches up on return."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "follow",
+            "caption": "StudyStep desktop screens",
+            "cue": "05 / FOLLOW → REVIEW CHANGES",
+            "screenshot": "assets/project-studystep-source-update.png?v=516b48a6caff",
+            "screenshotAlt": "A weekly check of Domain Name System shows newly added wording and the Mark reviewed button.",
+            "before": {
+              "screenshot": "assets/project-studystep-source-closed.png?v=516b48a6caff"
+            }
+          }
+        },
+        {
+          "label": "Read",
+          "heading": [
+            "SAVE THE",
+            "NEXT READING."
+          ],
+          "copy": "Explore Wikipedia articles related to a topic in your set. Check why a suggestion fits and what to know first.",
+          "facts": [
+            "Accept a topic to add it to your reading list.",
+            "Open the article when you’re ready."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "studystep",
+            "scene": "read",
+            "caption": "StudyStep desktop screens",
+            "cue": "06 / RELATED TOPIC → READING LIST",
+            "screenshot": "assets/project-studystep-reading-list.png?v=516b48a6caff",
+            "screenshotAlt": "The reading list shows Multicast DNS, its connection to the study topic, and a link to the article.",
+            "before": {
+              "screenshot": "assets/project-studystep-reading-suggestion.png?v=516b48a6caff"
+            }
           }
         }
       ],
-      "verifiedOn": "2026-11-02",
+      "verifiedOn": "2026-11-12",
       "documentation": "https://github.com/seaboose/StudyStep/blob/12fb21d4160c62552e6fe4a33594ef32c350802e/docs/release-0.3.2.md",
-      "context": "Personal learning software I’m building.",
+      "context": "Learning software I’m building for my own studies.",
       "verifiedCommit": "12fb21d4160c62552e6fe4a33594ef32c350802e",
-      "release": "https://github.com/seaboose/StudyStep/releases/tag/v0.3.2"
+      "release": "https://github.com/seaboose/StudyStep/releases/tag/v0.3.2",
+      "previewVersion": "v0.4.0 preview"
     }
   ]
 }

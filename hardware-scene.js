@@ -1,6 +1,6 @@
-import * as T from './assets/vendor/three.module.js?v=49dbad3d0926';
-import {drawScreen} from './screen-textures.js?v=49dbad3d0926';
-import {createAtmosphere} from './sky-environment.js?v=49dbad3d0926';
+import * as T from './assets/vendor/three.module.js?v=516b48a6caff';
+import {drawScreen} from './screen-textures.js?v=516b48a6caff';
+import {createAtmosphere} from './sky-environment.js?v=516b48a6caff';
 
 const V=(x,y,z)=>new T.Vector3(x,y,z);
 const clamp=x=>Math.max(0,Math.min(1,x));
@@ -9,7 +9,7 @@ const mix=(a,b,t)=>a.clone().lerp(b,t);
 
 export async function createHardwareScene(stage,{initialProgress=0}={}){
   const [geo,securityTexture]=await Promise.all([
-    fetch('./assets/world-land.json?v=49dbad3d0926').then(r=>{if(!r.ok)throw Error('Map asset unavailable');return r.json();}),
+    fetch('./assets/world-land.json?v=516b48a6caff').then(r=>{if(!r.ok)throw Error('Map asset unavailable');return r.json();}),
     new T.TextureLoader().loadAsync('./assets/security-field.svg').catch(()=>null)
   ]);
   const renderer=new T.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});

@@ -31,3 +31,36 @@
   height: 100%;
   object-fit: contain;
 }
+.studystep-capture {
+  position: relative;
+  overflow: hidden;
+}
+.visual-stage .studystep-capture img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+}
+.studystep-before {
+  visibility: hidden;
+}
+.studystep-capture .studystep-result {
+  background-color: var(--surface, #111512);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .studystep-capture.has-before .studystep-before {
+    visibility: visible;
+  }
+  .studystep-capture.has-before .studystep-result {
+    animation: studystep-reveal 9s ease-in-out infinite;
+  }
+  .studystep-capture[data-paused="true"] .studystep-result {
+    animation-play-state: paused;
+  }
+}
+@keyframes studystep-reveal {
+  0%, 31%, 100% { opacity: 0; }
+  37%, 94% { opacity: 1; }
+}
