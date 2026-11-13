@@ -148,7 +148,7 @@ function onWheel(event){
   if(decision.next!==null)jump(decision.next,{viaWheel:true});
 }
 try{
-  const response=await fetch('./project-catalog.json?v=insight-recordings');if(!response.ok)throw Error('Project catalog unavailable');
+  const response=await fetch('./project-catalog.json?v=insight-handoff');if(!response.ok)throw Error('Project catalog unavailable');
   const catalog=await response.json();projects=catalog.projects.filter(item=>item.category===categoryId);
   if(!projects.length||projects.some(item=>!Array.isArray(item.steps)||!item.steps.length))throw Error('Category has no project walkthrough');
   $('[data-category-description]').textContent=catalog.categories[categoryId].description;

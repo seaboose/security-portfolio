@@ -194,6 +194,27 @@
           }
         },
         {
+          "label": "Open",
+          "heading": [
+            "OPEN THE",
+            "OBSERVATION."
+          ],
+          "copy": "Open observation.jsonl in Surge. Six records appear. Select the first record, then follow that same saved observation into Insight in the next chapter.",
+          "facts": [
+            "Case 2 · Surge → Insight → Surge",
+            "Saved observation · LabCodeProbe"
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "recording",
+            "video": "assets/insight-surge-open.mp4",
+            "screenshot": "assets/insight-surge-open.png",
+            "alt": "Surge shows observation.jsonl with the first of six records selected.",
+            "caption": "Recorded in Surge",
+            "cue": "SURGE / OPEN"
+          }
+        },
+        {
           "label": "Verify",
           "heading": [
             "MATCH THE",
@@ -233,6 +254,27 @@
             "alt": "LabCodeProbe with the XOR instruction selected in the linked listing and byte view",
             "caption": "Recorded in Insight",
             "cue": "TRACE"
+          }
+        },
+        {
+          "label": "Attach",
+          "heading": [
+            "BRING THE",
+            "FINDING BACK."
+          ],
+          "copy": "In Surge, preview the reviewed finding exported from Insight. Attach that revision as E1, then cite E1 in the observations before exporting the report.",
+          "facts": [
+            "The attached revision retains the DLL fingerprint and sampled bytes.",
+            "E1 is the first evidence item in this investigation."
+          ],
+          "visual": {
+            "type": "demo",
+            "engine": "recording",
+            "video": "assets/insight-surge-attach.mp4",
+            "screenshot": "assets/insight-surge-attach.png",
+            "alt": "Surge shows the pinned E1 Insight finding and its citation in Observations.",
+            "caption": "Recorded in Surge",
+            "cue": "SURGE / ATTACH"
           }
         },
         {
